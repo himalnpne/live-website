@@ -5,6 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>HIMALNPNE</title>
   
+  <!-- Preload critical resources -->
+  <link rel="preload" href="font/static/JosefinSans-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+  
+  <!-- Inline critical CSS for LCP elements -->
+  <style>
+    .home-section h1 {
+      font-size: 4rem;
+      background: linear-gradient(135deg, #2563eb, #f43f5e);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1.5rem;
+    }
+    .home-section p {
+      font-size: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    /* Ensure fonts are visible during load */
+    @font-face {
+      font-family: 'Josefin Sans';
+      font-display: swap;
+      /* ... */
+    }
+  </style>
+  
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
@@ -242,11 +268,13 @@
 
     /* Floating Privacy Icons with enhanced animations */
     .privacy-icon {
+      display: none; /* Initially hidden */
       position: absolute;
       font-size: 1.5rem;
       color: var(--primary);
       animation: float 6s ease-in-out infinite;
       opacity: 0.8;
+      transition: opacity 1s ease-in-out;
     }
 
     .privacy-icon.lock {
@@ -939,154 +967,110 @@
     }
 
     /* Updated Testimonials Section */
-.testimonials-section {
-  margin: var(--section-spacing) 0;
-  padding: 0 1rem; /* Reduced padding for mobile */
-  position: relative;
-}
+    .testimonials-section {
+      margin: var(--section-spacing) 0;
+      padding: 0 1rem;
+      position: relative;
+    }
 
-.testimonials-header {
-  text-align: center;
-  margin-bottom: 2rem; /* Reduced margin for mobile */
-}
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
 
-.testimonials-header h2 {
-  font-size: 2rem; /* Slightly smaller on mobile */
-  margin-bottom: 0.5rem;
-}
+    .testimonials-header h2 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
 
-.testimonials-header p {
-  font-size: 1rem; /* Slightly smaller on mobile */
-  padding: 0 1rem; /* Added some padding */
-}
+    .testimonials-header p {
+      font-size: 1rem;
+      padding: 0 1rem;
+    }
 
-.testimonials-carousel {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  gap: 1rem; /* Reduced gap for mobile */
-  padding: 0.5rem 1rem; /* Adjusted padding */
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  scroll-padding: 0 1rem; /* Added scroll padding */
-}
+    .testimonials-carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1rem;
+      padding: 0.5rem 1rem;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      scroll-padding: 0 1rem;
+    }
 
-.testimonial-card {
-  flex: 0 0 calc(90% - 1rem); /* Wider cards on mobile */
-  scroll-snap-align: start;
-  background: var(--glass);
-  backdrop-filter: var(--blur);
-  border-radius: var(--card-radius);
-  padding: 1.5rem; /* Reduced padding for mobile */
-  box-shadow: var(--shadow);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
-  min-width: 0;
-  margin: 0 0.5rem; /* Small side margins */
-}
+    .testimonial-card {
+      flex: 0 0 calc(90% - 1rem);
+      scroll-snap-align: start;
+      background: var(--glass);
+      backdrop-filter: var(--blur);
+      border-radius: var(--card-radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.3s ease;
+      min-width: 0;
+      margin: 0 0.5rem;
+    }
 
-.testimonial-content {
-  font-style: italic;
-  margin-bottom: 1rem; /* Reduced margin */
-  line-height: 1.5; /* Adjusted line height */
-  font-size: 0.95rem; /* Slightly smaller text */
-}
+    /* Testimonial content with "See More" functionality */
+    .testimonial-content {
+      position: relative;
+      max-height: 150px;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+      font-size: 0.95rem;
+    }
 
-.testimonial-content::before,
-.testimonial-content::after {
-  font-size: 1.5rem; /* Smaller quotes */
-}
+    .testimonial-content.expanded {
+      max-height: 1000px;
+    }
 
-.testimonial-author {
-  gap: 0.75rem; /* Reduced gap */
-}
+    .testimonial-content::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0), var(--light));
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
 
-.author-avatar {
-  width: 50px; /* Smaller avatar */
-  height: 50px;
-}
+    .testimonial-content.expanded::after {
+      opacity: 0;
+    }
 
-.author-info h4 {
-  font-size: 1rem; /* Smaller name */
-}
+    .see-more-btn {
+      display: inline-block;
+      margin-top: 10px;
+      color: var(--primary);
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
 
-.author-info p {
-  font-size: 0.8rem; /* Smaller title */
-}
+    .see-more-btn:hover {
+      color: var(--accent);
+      text-decoration: underline;
+    }
 
-/* Tablet and Desktop */
-@media (min-width: 768px) {
-  .testimonials-section {
-    padding: 0 2rem;
-  }
-  
-  .testimonials-header {
-    margin-bottom: 3rem;
-  }
-  
-  .testimonials-header h2 {
-    font-size: 2.5rem;
-  }
-  
-  .testimonials-header p {
-    font-size: 1.1rem;
-    padding: 0;
-  }
-  
-  .testimonials-carousel {
-    gap: 2rem;
-    padding: 1rem 0;
-    scroll-padding: 0 2rem;
-  }
-  
-  .testimonial-card {
-    flex: 0 0 calc(50% - 1rem); /* 2 cards on tablet */
-    padding: 2rem;
-  }
-  
-  .testimonial-content {
-    margin-bottom: 1.5rem;
-    font-size: 1rem;
-  }
-  
-  .testimonial-content::before,
-  .testimonial-content::after {
-    font-size: 2rem;
-  }
-}
+    .see-more-btn i {
+      margin-left: 5px;
+      transition: transform 0.3s ease;
+    }
 
-/* Large Desktop */
-@media (min-width: 1024px) {
-  .testimonial-card {
-    flex: 0 0 calc(33.333% - 1.333rem); /* 3 cards on desktop */
-  }
-}
+    .testimonial-content.expanded + .see-more-btn i {
+      transform: rotate(180deg);
+    }
 
-/* Carousel Navigation */
-.carousel-nav {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin-top: 1.5rem;
-  padding: 0 1rem; /* Added padding to prevent touching edges */
-}
-
-.carousel-dot {
-  width: 8px; /* Smaller dots */
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.carousel-dot.active {
-  background: var(--primary);
-  transform: scale(1.1); /* Less pronounced active state */
-}
     .author-avatar {
-      width: 60px;
-      height: 60px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       object-fit: cover;
       flex-shrink: 0;
@@ -1101,7 +1085,7 @@
     .author-info p {
       color: var(--dark);
       opacity: 0.7;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
     }
 
     /* Carousel Navigation */
@@ -1110,11 +1094,12 @@
       justify-content: center;
       gap: 0.5rem;
       margin-top: 1.5rem;
+      padding: 0 1rem;
     }
 
     .carousel-dot {
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
       background: rgba(0, 0, 0, 0.2);
       cursor: pointer;
@@ -1123,8 +1108,52 @@
 
     .carousel-dot.active {
       background: var(--primary);
-      transform: scale(1.2);
+      transform: scale(1.1);
     }
+
+    /* Tablet and Desktop */
+    @media (min-width: 768px) {
+      .testimonials-section {
+        padding: 0 2rem;
+      }
+      
+      .testimonials-header {
+        margin-bottom: 3rem;
+      }
+      
+      .testimonials-header h2 {
+        font-size: 2.5rem;
+      }
+      
+      .testimonials-header p {
+        font-size: 1.1rem;
+        padding: 0;
+      }
+      
+      .testimonials-carousel {
+        gap: 2rem;
+        padding: 1rem 0;
+        scroll-padding: 0 2rem;
+      }
+      
+      .testimonial-card {
+        flex: 0 0 calc(50% - 1rem);
+        padding: 2rem;
+      }
+      
+      .testimonial-content {
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+      }
+    }
+
+    /* Large Desktop */
+    @media (min-width: 1024px) {
+      .testimonial-card {
+        flex: 0 0 calc(33.333% - 1.333rem);
+      }
+    }
+
     /* Enhanced Footer with animations */
     footer {
       background: var(--glass);
@@ -1414,7 +1443,7 @@
             <g>
               <path class="cls-1" d="M.17,900.3v-17.18h34.36v42.33h48.33c20.34,0,35.56,6.85,46.06,20.61,7.89,10.34,12.34,24.11,13.6,41.38h.4v79.08h-34.36v-51.22h-.03v-17.18c0-14.74-2.22-25.17-6.87-31.25-3.59-4.71-9.81-7.06-18.82-7.06h-48.33v106.71H.17v-106.71h-.17v-34.36h.17v-25.15h0Z"/>
               <path class="cls-1" d="M181.19,883.12c9.49,0,17.18,7.69,17.18,17.18s-7.69,17.18-17.18,17.18-17.18-7.69-17.18-17.18,7.69-17.18,17.18-17.18ZM164.01,925.45h34.36v141.07h-34.36v-141.07Z"/>
-              <path class="cls-1" d="M221.91,942.63v-17.18h34.36v4.7c12.67-5.35,9.37-4.7,25.68-4.7,17.59,0,29.02,1.73,42.87,16.81,13.86-15.08,25.28-16.81,42.87-16.81,19.07,0,32.36,2.66,46.06,20.61,7.89,10.34,12.35,24.11,13.61,41.38h.4v79.08h-34.36v-51.22h-.03v-17.18c0-14.74-2.22-25.17-6.87-31.25-3.59-4.71-9.81-7.06-18.82-7.06s-15.22,2.35-18.82,7.06c-4.57,5.99-6.8,16.18-6.87,30.56v69.09h-34.36v-51.23h-.03v-17.18c0-14.74-2.22-25.17-6.87-31.25-3.59-4.71-9.81-7.06-18.82-7.06s-15.22,2.35-18.82,7.06c-4.57,5.99-6.8,16.18-6.87,30.56v69.09h-34.36v-123.89h0Z"/>
+              <path class="cls-1" d="M221.91,942.63v-17.18h34.36v4.7c12.67-5.35,9.37-4.7,25.68-4.7,17.59,0,29.02,1.73,42.87,16.81,13.86-15.08,25.28-16.81,42.87-16.81,19.07,0,32.36,2.66,46.06,20.61,7.89,10.34,12.35,24.11,13.61,41.38h.4v79.08h-34.36v-51.22h-.03v-17.18c0-14.74-2.22-25.17-6.87-31.25-3.59-4.71-9.81-7.06-18.82-7.06s-15.22,2.35-18.82,7.06c-4.57,5.99-6.8,16.18-6.87,30.56v69.09h-34.36v-123.89h0Z"/>
               <path class="cls-1" d="M551.87,966.86h34.36v99.65h-34.36v-5.93c-7.89,3.8-16.73,5.93-26.05,5.93h-22.45c-29.34,0-47.9-19.04-55.83-43.41-2.82-8.67-4.23-17.95-4.23-27.13s1.41-18.46,4.23-27.12c7.94-24.37,26.49-43.41,55.83-43.41h39.63v34.36h-39.63c-11.83,0-19.63,8.62-23.22,19.65-1.66,5.1-2.49,10.76-2.49,16.52s.83,11.43,2.49,16.52c3.59,11.03,11.39,19.65,23.22,19.65h22.45c7.15,0,13.66-2.94,18.38-7.66,4.73-4.73,7.66-11.23,7.66-18.38v-39.25ZM586.22,940.16c0,8.13-6.59,14.72-14.72,14.72s-14.71-6.59-14.71-14.72,6.58-14.71,14.71-14.71,14.72,6.58,14.72,14.71Z"/>
               <path class="cls-1" d="M607.31,883.12h34.36v114.26c0,12.24,1.87,20.72,5.35,26.3,2.84,4.55,7.29,7.49,13.08,9.34l16.3,5.23-10.47,32.61-16.3-5.23c-13.46-4.32-24.2-11.76-31.74-23.84-6.89-11.04-10.59-25.46-10.59-44.42v-114.26Z"/>
               <path class="cls-1" d="M688.79,925.45h34.36v4.7c6.11-2.58,12.99-4.09,20.65-4.55v-.15h34.36v.26c17.03,1.37,30.07,8.14,39.38,20.35,7.89,10.34,12.34,24.11,13.6,41.38h.4v79.08h-34.36v-51.22h-.03v-17.18c0-14.74-2.22-25.17-6.87-31.25-3.59-4.71-9.81-7.06-18.82-7.06h-22.65c-9.01,0-15.22,2.35-18.82,7.06-4.57,5.99-6.8,16.18-6.86,30.56v69.09h-34.36v-51.23h0v-17.7s0-72.14,0-72.14Z"/>
@@ -1528,82 +1557,95 @@
         <p>Hear what people say about working with me</p>
       </div>
   
+      <div class="testimonials-carousel" id="testimonialsCarousel">
+        <!-- Testimonial 1 - Anish Neupane -->
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            Himal helped me solve a critical issue with my MacBook when I was about to lose important work. His quick thinking and technical expertise saved me hours of frustration. He explained the problem in simple terms and even taught me how to prevent it in the future. The level of detail and care he showed was exceptional, going above and beyond what I expected. Not only did he fix the immediate problem, but he also provided a comprehensive guide for future maintenance. His patience and willingness to explain technical concepts in layman's terms made the whole experience stress-free. I would highly recommend Himal to anyone needing technical assistance.
+          </div>
+          <div class="see-more-btn">
+            See More <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="testimonial-author">
+            <img src="https://www.instagram.com/p/DHl0mtnBIR1b4Dz_qMMuzg9cFqLBN-SIpscdnM0/" alt="Anish Neupane" class="author-avatar" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
+            <div class="author-info">
+              <h4>Anish Neupane</h4>
+              <p>Graphic Designer</p>
+            </div>
+          </div>
+        </div>
         
-        <div class="testimonials-carousel" id="testimonialsCarousel">
-          <!-- Testimonial 1 - Anish Neupane -->
-          <div class="testimonial-card">
-            <div class="testimonial-content">
-              Himal helped me solve a critical issue with my MacBook when I was about to lose important work. His quick thinking and technical expertise saved me hours of frustration. He explained the problem in simple terms and even taught me how to prevent it in the future.
-            </div>
-            <div class="testimonial-author">
-              <img src="https://www.instagram.com/p/DHl0mtnBIR1b4Dz_qMMuzg9cFqLBN-SIpscdnM0/" alt="Anish Neupane" class="author-avatar" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
-              <div class="author-info">
-                <h4>Anish Neupane</h4>
-                <p>Graphic Designer</p>
-              </div>
-            </div>
+        <!-- Testimonial 2 - Pratham Sharma -->
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            As a mobile app developer new to UI/UX design, Himal's guidance was invaluable. He translated complex design principles into practical insights tailored for app development. His hands-on feedback helped me refine my app's user experience, making it more intuitive and engaging. His patience and clear explanations made the learning process smooth and enjoyable. The before-and-after difference in my app's interface was remarkable after implementing his suggestions. He didn't just point out issues but provided concrete solutions with detailed reasoning behind each recommendation. His expertise in both technical implementation and user psychology gave me a much broader perspective on app development.
           </div>
-          
-          <!-- Testimonial 2 - Pratham Sharma -->
-          <div class="testimonial-card">
-            <div class="testimonial-content">
-              As a mobile app developer new to UI/UX design, Himal's guidance was invaluable. He translated complex design principles into practical insights tailored for app development. His hands-on feedback helped me refine my app's user experience, making it more intuitive and engaging. His patience and clear explanations made the learning process smooth and enjoyable.
-            </div>
-            <div class="testimonial-author">
-              <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Pratham Sharma" class="author-avatar">
-              <div class="author-info">
-                <h4>Pratham Sharma</h4>
-                <p>Mobile App Devloper</p>
-              </div>
-            </div>
+          <div class="see-more-btn">
+            See More <i class="fas fa-chevron-down"></i>
           </div>
-          
-          <!-- Testimonial 3 - Ayyush Silwal -->
-          <div class="testimonial-card">
-            <div class="testimonial-content">
-              When I needed a reliable networking setup, Himal helped me choose the right device based on my needs and budget. He walked me through the fundamentals of networking, from setting up a secure connection to optimizing bandwidth for multiple devices. His deep knowledge of networking concepts, from routers and firewalls to VPNs and port forwarding, made it easy to grasp even the more advanced topics. Thanks to his guidance, I now have a stable and efficient network, and I still rely on his tips to troubleshoot and improve performance.
-            </div>
-            <div class="testimonial-author">
-              <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Ayyush Silwal" class="author-avatar">
-              <div class="author-info">
-                <h4>Ayyush Silwal</h4>
-                <p>Networking Setup</p>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Testimonial 4 - Hemant Kerwat -->
-          <div class="testimonial-card">
-            <div class="testimonial-content">
-              I was struggling with my home network setup until Himal stepped in. He not only fixed my connectivity issues but also optimized my entire setup for better performance. His technical knowledge is impressive, and he explains things in a way that's easy to understand.
-            </div>
-            <div class="testimonial-author">
-              <img src="https://www.instagram.com/p/C1y2RVMLQm6/" alt="Hemant Kerwat" class="author-avatar" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
-              <div class="author-info">
-                <h4>Hemant Kewrat</h4>
-                <p>Small Business Owner</p>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Testimonial 5 - Niran Basnet -->
-          <div class="testimonial-card">
-            <div class="testimonial-content">
-              Himal's advice on choosing the right laptop for my needs saved me from making an expensive mistake. He analyzed my requirements and recommended the perfect balance of performance and value. A year later, I'm still completely satisfied with his recommendation.
-            </div>
-            <div class="testimonial-author">
-              <img src="https://www.instagram.com/p/CdWCQZiMP-L-tWkMFvLLOTxyHBXkVGwo_62V000/" alt="Niran Basnet" class="author-avatar" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
-              <div class="author-info">
-                <h4>Niran Basnet</h4>
-                <p>College Student</p>
-              </div>
+          <div class="testimonial-author">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Pratham Sharma" class="author-avatar">
+            <div class="author-info">
+              <h4>Pratham Sharma</h4>
+              <p>Mobile App Developer</p>
             </div>
           </div>
         </div>
-    
-        <div class="carousel-nav" id="carouselNav">
+        
+        <!-- Testimonial 3 - Ayyush Silwal -->
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            When I needed a reliable networking setup, Himal helped me choose the right device based on my needs and budget. He walked me through the fundamentals of networking, from setting up a secure connection to optimizing bandwidth for multiple devices. His deep knowledge of networking concepts, from routers and firewalls to VPNs and port forwarding, made it easy to grasp even the more advanced topics. Thanks to his guidance, I now have a stable and efficient network, and I still rely on his tips to troubleshoot and improve performance.
+          </div>
+          <div class="see-more-btn">
+            See More <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="testimonial-author">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Ayyush Silwal" class="author-avatar">
+            <div class="author-info">
+              <h4>Ayyush Silwal</h4>
+              <p>Networking Setup</p>
+            </div>
           </div>
         </div>
+        
+        <!-- Testimonial 4 - Hemant Kerwat -->
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            I was struggling with my home network setup until Himal stepped in. He not only fixed my connectivity issues but also optimized my entire setup for better performance. His technical knowledge is impressive, and he explains things in a way that's easy to understand. He took the time to understand my specific needs and usage patterns before recommending solutions. The network performance improvement was noticeable immediately, and I haven't had any issues since. What impressed me most was his ability to explain complex networking concepts in simple terms without making me feel technologically challenged.
+          </div>
+          <div class="see-more-btn">
+            See More <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="testimonial-author">
+            <img src="https://www.instagram.com/p/C1y2RVMLQm6/" alt="Hemant Kerwat" class="author-avatar" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
+            <div class="author-info">
+              <h4>Hemant Kewrat</h4>
+              <p>Small Business Owner</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Testimonial 5 - Niran Basnet -->
+        <div class="testimonial-card">
+          <div class="testimonial-content">
+            Himal's advice on choosing the right laptop for my needs saved me from making an expensive mistake. He analyzed my requirements and recommended the perfect balance of performance and value. A year later, I'm still completely satisfied with his recommendation. He considered all aspects - from processor requirements to battery life, from portability to future-proofing. The device he suggested has handled all my coursework and creative projects without any hiccups. His knowledge of current tech trends and honest recommendations (without pushing for more expensive options) showed his integrity and expertise.
+          </div>
+          <div class="see-more-btn">
+            See More <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="testimonial-author">
+            <img src="https://www.instagram.com/p/CdWCQZiMP-L-tWkMFvLLOTxyHBXkVGwo_62V000/" alt="Niran Basnet" class="author-avatar" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3135/3135715.png'">
+            <div class="author-info">
+              <h4>Niran Basnet</h4>
+              <p>College Student</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-nav" id="carouselNav">
+        <!-- Navigation dots will be added by JavaScript -->
       </div>
     </section>
   </main>
@@ -1638,6 +1680,25 @@
 
   <!-- Custom Scripts -->
   <script>
+    // Show floating privacy icons after 3 seconds
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(function() {
+        const privacyIcons = document.querySelectorAll('.privacy-icon');
+        privacyIcons.forEach(icon => {
+          icon.style.display = 'block';
+          
+          // Optional: Add a fade-in effect
+          icon.style.opacity = '0';
+          icon.style.transition = 'opacity 1s ease-in-out';
+          
+          // Trigger reflow to enable transition
+          void icon.offsetWidth;
+          
+          icon.style.opacity = '0.8';
+        });
+      }, 3000); // 3000ms = 3 seconds
+    });
+
     // Dark Mode Toggle
     const darkModeToggle = document.querySelector('.dark-mode-toggle');
     const darkModeToggleMobile = document.querySelector('.dark-mode-toggle.mobile');
@@ -1776,6 +1837,33 @@
       }
     }
 
+    // Testimonial expansion functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const seeMoreButtons = document.querySelectorAll('.see-more-btn');
+      
+      seeMoreButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const testimonialContent = this.previousElementSibling;
+          testimonialContent.classList.toggle('expanded');
+          
+          // Update button text
+          if (testimonialContent.classList.contains('expanded')) {
+            this.innerHTML = 'See Less <i class="fas fa-chevron-up"></i>';
+          } else {
+            this.innerHTML = 'See More <i class="fas fa-chevron-down"></i>';
+          }
+        });
+      });
+
+      // Auto-hide "See More" for short testimonials
+      document.querySelectorAll('.testimonial-content').forEach(content => {
+        if (content.scrollHeight <= 150) { // If content is shorter than max-height
+          content.nextElementSibling.style.display = 'none';
+          content.style.maxHeight = 'none';
+        }
+      });
+    });
+
     // Load and render blog posts
     document.addEventListener('DOMContentLoaded', function() {
       const postFiles = ['post1.json', 'post2.json', 'post3.json'];
@@ -1912,10 +2000,7 @@
       });
     });
 
-    // Initialize when DOM is loaded
-    document.addEventListener('DOMContentLoaded', function() {
-      type(); // Start typing effect
-    });
+    // Initialize carousel navigation
     document.addEventListener('DOMContentLoaded', function() {
       const carousel = document.getElementById('testimonialsCarousel');
       const carouselNav = document.getElementById('carouselNav');
@@ -1975,6 +2060,11 @@
       cards.forEach(card => {
         card.style.flex = isMobile ? '0 0 calc(100% - 2rem)' : '0 0 calc(33.333% - 1.333rem)';
       });
+    });
+
+    // Start typing effect when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      type();
     });
   </script>
 </body>
