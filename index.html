@@ -1,13 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Primary Meta Tags -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>HIMALNPNE</title>
+  <meta name="description" content="Himal Neupane - Creative UI/UX designer and developer specializing in digital experiences. Explore my portfolio, blog, and tech insights.">
+  <meta name="keywords" content="HIMALNPNE, himal NEupane, HImal Npne, Himal in IT, UI/UX design, web development, digital strategy, creative solutions">
+  <meta name="author" content="Himal Neupane">
+  
+  <!-- Open Graph / Facebook Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://himalnpne.com/">
+  <meta property="og:title" content="HIMALNPNE | UI/UX Designer & Developer">
+  <meta property="og:description" content="Himal Neupane - Creative UI/UX designer and developer specializing in digital experiences. Explore my portfolio, blog, and tech insights.">
+  <meta property="og:image" content="https://himalnpne.com/logo.png">
+  
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://himalnpne.com/">
+  <meta name="twitter:title" content="HIMALNPNE | UI/UX Designer & Developer">
+  <meta name="twitter:description" content="Himal Neupane - Creative UI/UX designer and developer specializing in digital experiences. Explore my portfolio, blog, and tech insights.">
+  <meta name="twitter:image" content="https://himalnpne.com/logo.png">
   
   <!-- Preload critical resources -->
   <link rel="preload" href="font/static/JosefinSans-Regular.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="logo.png" type="image/png">
   
   <!-- Inline critical CSS for LCP elements -->
   <style>
@@ -436,7 +457,7 @@
       color: white;
       cursor: pointer;
       box-shadow: var(--shadow);
-      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       z-index: 1000;
       font-size: 1rem;
       overflow: hidden;
@@ -1395,6 +1416,55 @@
         grid-template-columns: repeat(3, 1fr);
       }
     }
+/* Mountain Background - Responsive Adjustments */
+.mountain-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: auto; /* Let height adjust based on width */
+  z-index: -1;
+  pointer-events: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  opacity: 0.08;
+  transition: opacity 0.5s ease;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+}
+
+/* SVG Styling */
+.mountain-background svg {
+  width: 100vw; /* Full width */
+  height: auto; /* Maintain original aspect ratio */
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+/* Dark Mode - Slightly More Visible */
+body.dark-mode .mountain-background {
+  opacity: 0.5;
+}
+
+body.dark-mode .mountain-path {
+  fill: var(--accent2);
+  opacity: 0.6;
+}
+
+/* Ensure Proper Positioning and Mobile Adjustments */
+@media (max-width: 768px) {
+  .mountain-background {
+    opacity: 0.1; /* Lower opacity in light mode on mobile */
+  }
+  
+  body.dark-mode .mountain-background {
+    opacity: 0.5; /* Keep dark mode visibility */
+  }
+}
+
+
   </style>
 </head>
 <body>
@@ -1443,7 +1513,7 @@
             <g>
               <path class="cls-1" d="M.17,900.3v-17.18h34.36v42.33h48.33c20.34,0,35.56,6.85,46.06,20.61,7.89,10.34,12.34,24.11,13.6,41.38h.4v79.08h-34.36v-51.22h-.03v-17.18c0-14.74-2.22-25.17-6.87-31.25-3.59-4.71-9.81-7.06-18.82-7.06h-48.33v106.71H.17v-106.71h-.17v-34.36h.17v-25.15h0Z"/>
               <path class="cls-1" d="M181.19,883.12c9.49,0,17.18,7.69,17.18,17.18s-7.69,17.18-17.18,17.18-17.18-7.69-17.18-17.18,7.69-17.18,17.18-17.18ZM164.01,925.45h34.36v141.07h-34.36v-141.07Z"/>
-              <path class="cls-1" d="M221.91,942.63v-17.18h34.36v4.7c12.67-5.35,9.37-4.7,25.68-4.7,17.59,0,29.02,1.73,42.87,16.81,13.86-15.08,25.28-16.81,42.87-16.81,19.07,0,32.36,2.66,46.06,20.61,7.89,10.34,12.35,24.11,13.61,41.38h.4v79.08h-34.36v-51.22h-.03v-17.18c0-14.74-2.22-25.17-6.87-31.25-3.59-4.71-9.81-7.06-18.82-7.06s-15.22,2.35-18.82,7.06c-4.57,5.99-6.8,16.18-6.87,30.56v69.09h-34.36v-123.89h0Z"/>
+              <path class="cls-1" d="M221.91,942.63v-17.18h34.36v4.7c12.67-5.35,9.37-4.7,25.68-4.7,17.59,0,29.02,1.73,42.87,16.81,13.86-15.08,25.28-16.81,42.87-16.81,19.07,0,32.36,2.66,46.06,20.61,7.89,10.34,12.35,24.11,13.61,41.38h.4v79.08h-34.36v-51.22h-.03v-17.18c0-14.74-2.22-25.17-6.87-31.25-3.59-4.71-9.81-7.06-18.82-7.06s-15.22,2.35-18.82,7.06c-4.57,5.99-6.8,16.18-6.87,30.56v69.09h-34.36v-51.23h-.03v-17.18c0-14.74-2.22-25.17-6.87-31.25-3.59-4.71-9.81-7.06-18.82-7.06s-15.22,2.35-18.82,7.06c-4.57,5.99-6.8,16.18-6.87,30.56v69.09h-34.36v-123.89h0Z"/>
               <path class="cls-1" d="M551.87,966.86h34.36v99.65h-34.36v-5.93c-7.89,3.8-16.73,5.93-26.05,5.93h-22.45c-29.34,0-47.9-19.04-55.83-43.41-2.82-8.67-4.23-17.95-4.23-27.13s1.41-18.46,4.23-27.12c7.94-24.37,26.49-43.41,55.83-43.41h39.63v34.36h-39.63c-11.83,0-19.63,8.62-23.22,19.65-1.66,5.1-2.49,10.76-2.49,16.52s.83,11.43,2.49,16.52c3.59,11.03,11.39,19.65,23.22,19.65h22.45c7.15,0,13.66-2.94,18.38-7.66,4.73-4.73,7.66-11.23,7.66-18.38v-39.25ZM586.22,940.16c0,8.13-6.59,14.72-14.72,14.72s-14.71-6.59-14.71-14.72,6.58-14.71,14.71-14.71,14.72,6.58,14.72,14.71Z"/>
               <path class="cls-1" d="M607.31,883.12h34.36v114.26c0,12.24,1.87,20.72,5.35,26.3,2.84,4.55,7.29,7.49,13.08,9.34l16.3,5.23-10.47,32.61-16.3-5.23c-13.46-4.32-24.2-11.76-31.74-23.84-6.89-11.04-10.59-25.46-10.59-44.42v-114.26Z"/>
               <path class="cls-1" d="M688.79,925.45h34.36v4.7c6.11-2.58,12.99-4.09,20.65-4.55v-.15h34.36v.26c17.03,1.37,30.07,8.14,39.38,20.35,7.89,10.34,12.34,24.11,13.6,41.38h.4v79.08h-34.36v-51.22h-.03v-17.18c0-14.74-2.22-25.17-6.87-31.25-3.59-4.71-9.81-7.06-18.82-7.06h-22.65c-9.01,0-15.22,2.35-18.82,7.06-4.57,5.99-6.8,16.18-6.86,30.56v69.09h-34.36v-51.23h0v-17.7s0-72.14,0-72.14Z"/>
@@ -1497,16 +1567,30 @@
   </div>
 
   <!-- Main Content -->
-  <main>
-    <section id="home" class="home-section" data-aos="fade-up">
-      <h1>Welcome to My Website</h1>
-      <p>Hi, I'm Himal Neupane. I specialize in creating exceptional digital experiences through <span class="typing-effect">UI/UX Design</span></p>
-      <a href="contact.html" class="btn">Hire Me ? </a>
-      <div class="scroll-down">
-        <span>Scroll Down</span>
-        <i class="fas fa-chevron-down"></i>
-      </div>
-    </section>
+  <main><br/><br/>
+    <!-- Home Section with mountain background -->
+<section id="home" class="home-section" data-aos="fade-up">
+ <br/> <br/><h1>Welcome to My Website</h1>
+  <p>Hi, I'm Himal Neupane. I specialize in creating exceptional digital experiences through <span class="typing-effect">UI/UX Design</span></p>
+  <a href="contact.html" class="btn">Hire Me ? </a>   <br/>   <br/>  <br/>  <br/>   <br/>  <br/>  <br/>
+  <div class="scroll-down">
+    <br/><br/><br/>
+    <span>Scroll Down</span>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+  
+  <!-- Mountain Background SVG --> <br/> <br/><br/> <br/><br/><br/>
+  <div class="mountain-background">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 145.13 53.44" preserveAspectRatio="none">
+      <path class="mountain-path" d="M144.31,49.01l-5.28-.61-3.99-8.2-.14-.29-.3-.13-2.77-1.19-1.38-.59-.69-.3-.35-.15-.25-.12c-.64-.35-1.21-1.14-1.75-1.98-.55-.85-1.04-1.79-1.81-2.7l-.28-.33-.42.04c-.65.06-1.25.27-1.76.46-.29.1-.55.19-.8.25-.23-.62-.41-1.29-.58-2.01-.23-.95-.5-1.99-.96-2.97l-.37-.79-.76.39c-.39.2-.71.53-.94.81l-1.36-3.82-.6-1.68-.92,1.51-4.17,6.83-.13.21v.27c0,1.1.14,2.11.2,3.06-.7.18-1.47.3-2.27.45-.26.05-.53.11-.79.18-.13.03-.27.07-.42.12l-.39.13c-.53.2-1.04.44-1.52.72-1.62.94-2.92,2.16-4.23,3.21-.74-1.75-1.38-3.61-2.23-5.44l-.2-.43-.44-.06c-1.15-.15-2.16.01-3.04,0-.01-.13-.03-.27-.04-.42-.03-.4-.07-.89-.19-1.37l-.09-.34-.27-.19-6.6-4.63c-.68-2.12-1.48-4.14-2.11-6.17l-.24-.77-.74.17c-.98.23-1.85.57-2.68.8-1.2-1.33-2.36-2.7-3.53-4.08l-1.94-2.27-1-1.12-.49-.55-.42-.51-.38-.56-.34-.6c-.21-.41-.41-.84-.58-1.28-.35-.89-.64-1.83-.93-2.8-.29-.97-.58-1.96-.94-2.95-.18-.50-.38-.99-.61-1.47-.23-.49-.49-.96-.78-1.42l-.83-1.35-.63,1.46-3.96,9.12-2.47.24-.57.05-.15.62c-.44,1.85-.64,3.68-1.01,5.38-.72.31-1.49.57-2.3.82-.95.3-1.93.59-2.91,1.07l-.38.19-.08.42-.87,4.46-.17-.05-.57-.18c-.21-.05-.42-.12-.76-.13l-.59-.02-.2.61-2.52,7.62c-.28.16-.59.31-.95.46-.18.07-.37.16-.57.24-.05-.15-.09-.31-.14-.46-.15-.5-.28-1-.52-1.58l-.31-.74-.72.26c-.41.15-.68.31-.96.46-.03.01-.05.03-.08.04-.3-.64-.6-1.32-.97-2.01l-.29-.54-.57.1c-1.42.24-2.7.68-3.95.94-2.68-3.45-5.11-7.2-7.89-10.72l-.78-.99-.6,1.11-2.07,3.86-.26.48-.25.44c-.08.13-.17.26-.24.34-.07.1-.11.11-.12.12,0,0-.02.01-.12,0-.09,0-.23-.03-.38-.07-.3-.07-.64-.17-.98-.27l-.61-.17-.33.57-3.3,5.79c-1.43.52-2.82,1.19-4.12,2.06-1.29.86-2.46,1.92-3.48,3.12-1.14.09-2.32.08-3.54.14-.33.02-.68.04-1.01.07h-.12s-.03.01-.03.01c.1-.02-.29.02-.47.19-.05.04-.09.08-.13.13l-.04.05-.05.08s-.06.11-.08.15c-.08.22-.09.31-.12.42-.04.21-.07.39-.09.58-.09.72-.15,1.42-.22,2.11l-.19,2.06-.06.48c0,.08-.03.16-.02.14,0,0-.04.14-.06.20l-.15.46s0,.01,0,.02l-.33.19-.42.28c-.23.15-.5.29-.77.42-.56.26-1.17.50-1.81.81l-.38.18-.09.44-.68,3.12-3.29,1.07-.41.13-.11.42h0c-.21,1.63,0,3.04-.14,4.51.59-1.12.98-2.40,1.50-3.45l.14-.04,4.73,2.23-.77-4.48.57-2.64,5.91,5.53-2.38-7.52c.06-.07.11-.14.14-.21.09-.17.13-.28.17-.38l.17-.52c.03-.10.04-.12.09-.29.04-.19.05-.28.07-.38l.06-.55.19-2.09c.06-.69.12-1.38.21-2.03,0-.03.01-.06.02-.10.03,0,.07,0,.10,0l4.94,7.80.73-9.16c.79-.83,1.66-1.57,2.60-2.20,1.25-.84,2.62-1.49,4.05-1.99l.30-.10.16-.29,3.13-5.49c.08.02.16.04.25.06l1.82,6.03.27-6.27c.14-.11.26-.23.34-.33.16-.20.28-.38.39-.55.11-.17.20-.34.29-.51l.26-.48,1.10-2.04c-.25,1.82-.38,4.23-.87,4.92.39.67.88,1.33,1.26,2-.68,1.34-1.37,3.02-2.05,4.36.75,2.77,1.86,5.86,2.62,8.63.86-1.64,1.82-3.58,2.69-5.22-.32-1.98-.47-4.20-.79-6.19.77-.86,1.54-1.72,2.32-2.58.85,1.18,1.72,2.36,2.63,3.51l.11.14-2.21,3.90c2.34-1.34,4.67-2.67,7.01-4.01.23.49.47,1.01.75,1.53l.34.64.65-.23c.31-.11.55-.24.77-.36v7.40l3.82-5.86c.30-.14.61-.30.93-.52l.24-.17.09-.27,2.29-6.92,3.30,13.73,6.30,4.30-2.97-6.79,4.29,1.26-8.36-13.28.88-4.50,5.76,3.46.64-9.86c.08-.50.18-1.00.28-1.48l2.34-.22.46-.04.20-.46,3.33-7.68c-.02,3.52.08,8.66.02,11.59,1.37,1.56,2.86,3.40,4.23,4.96-.33.34-.56.90-.89,1.24.16.81.54,1.63.70,2.44,1.41,1.32,2.90,2.78,4.30,4.10,2.48-.49,6.16-.22,9-.16l6.48,4.54c.04.22.06.45.08.73.03.40.07.89.19,1.37l.15.59.56.07c1.02.13,1.93.01,2.74,0l-.11,12.31,4.15-5.94.09-.06c1.77-1.28,3.24-2.80,4.90-3.75.41-.23.84-.44,1.27-.60l.34-.11.32-.09c.23-.06.46-.11.70-.16.96-.19,2.02-.31,3.11-.70l.57-.21v-.65c0-1.26-.19-2.41-.21-3.48l3.12-5.10.02.06c-.35,3.11-.77,7.47-1.10,10.30,1.39,1.83,2.76,3.81,4.15,5.63,1.10-2.46,2.20-5.61,3.30-8.12.34-.09.66-.20.94-.30.32-.11.60-.20.87-.27-.33,2.56-1.09,5.75-.83,8.21,1.38-1.31,2.79-2.58,4.18-3.88.15.11.29.24.46.34l.43.21.35.15.69.30,1.38.59,2.11.90c-.80.93-1.61,1.86-2.41,2.79,1.67.80,3.59,1.72,5.28,2.52l1.54,3.17.20.42.45.05,5.32.62,1.15,2.66.22-3.69.04-.63-.78-.09h-.04ZM10.25,36.56h.01s-.05,0-.01,0ZM82.69,22.94l.02.02.45-.11c.87-.21,1.66-.50,2.41-.73.57,1.71,1.19,3.37,1.73,5.02-1.47-1.01-3.29-2.20-4.18-2.89-.18-.44-.30-.88-.44-1.31Z"/>
+      <path class="mountain-path" d="M86.24,37.63c-2.43-.35-8.08-3.82-10.21-4.54l-7.70,8.19,8.13-5.90c.60,1.73,1.53,3.81,1.27,4.61.83.46,1.77.86,2.60,1.31-.19,1.52-.22,3.36-.40,4.87,2.34,2.23,5.30,4.62,7.64,6.86.27-1.87.51-4.06.78-5.93-1.40-1.69-2.71-3.67-4.11-5.37.67-1.37,1.34-2.73,2.01-4.10Z"/>
+      <polygon class="mountain-path" points="32.36 47.16 38.85 40.69 42.3 53.44 42.3 46.95 44.03 48.61 45.83 44.69 37.96 38.98 32.36 47.16"/>
+      <polygon class="mountain-path" points="110.56 43.06 106.95 48.76 111.14 44.78 116.71 52.18 117.84 47.93 114.24 46.05 110.56 43.06"/>
+      <path class="mountain-path" d="M72.78,29.15l-2.97-.23-2.50-10.25,1.53,11.89s3.89-1.41,3.94-1.41Z"/>
+      <polygon class="mountain-path" points="24.8 41.41 23.32 41.41 21.95 35.34 22.37 43.21 28.22 45.1 25.86 43.44 24.8 41.41"/>
+    </svg>
+  </div>
+</section>
 
     <!-- Blog Section -->
     <section id="blog" class="blog-section" data-aos="fade-up" data-aos-delay="200">
