@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe to Our Newsletter</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .subscription-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        
+        .subscription-header {
+            margin-bottom: 30px;
+        }
+        
+        .subscription-header h1 {
+            color: #202124;
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .subscription-header p {
+            color: #5f6368;
+            font-size: 16px;
+        }
+        
+        .subscription-form {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #3c4043;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.2s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+        }
+        
+        .submit-btn {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            background-color: #1765cc;
+        }
+        
+        .privacy-note {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #5f6368;
+            line-height: 1.5;
+        }
+        
+        .privacy-note a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+        
+        .privacy-note a:hover {
+            text-decoration: underline;
+        }
+
+        .success-message {
+            color: #28a745;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .error-message {
+            color: #dc3545;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="subscription-container">
+        <div class="subscription-header">
+            <h1>Stay Updated</h1>
+            <p>Subscribe to our newsletter for the latest news and updates.</p>
+        </div>
+        
+        <form id="subscriptionForm" class="subscription-form">
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" name="emailAddress" id="email" required placeholder="your@email.com">
+            </div>
+            
+            <button type="submit" class="submit-btn">Subscribe</button>
+            
+            <div class="success-message" id="successMessage">
+                Thank you for subscribing!
+            </div>
+
+            <div class="error-message" id="errorMessage">
+                An error occurred. Please try again.
+            </div>
+            
+            <div class="privacy-note">
+                By subscribing, you agree to our <a href="#" target="_blank">Privacy Policy</a>. 
+                We'll never spam you or share your email with third parties.
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('subscriptionForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            const form = e.target;
+            const emailInput = document.getElementById('email');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+
+            // Reset previous messages
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+
+            // Validate email (you can add more robust validation if needed)
+            if (!emailInput.checkValidity()) {
+                emailInput.reportValidity();
+                return;
+            }
+
+            // Prepare form data
+            const formData = new FormData();
+            formData.append('emailAddress', emailInput.value);
+            formData.append('fvv', '1');
+            formData.append('partialResponse', '[null,null,"8451942554320962319"]');
+            formData.append('pageHistory', '0');
+            formData.append('fbzx', '5057574322375540524');
+
+            // Send form data using Fetch API
+            fetch('https://docs.google.com/forms/u/0/d/e/1FAIpQLSfhMCTSn5w5E2O091mmWmGVy4UTXOEfje3Rp3wf7GAinKNSlg/formResponse', {
+                method: 'POST',
+                mode: 'no-cors', // Important for cross-origin requests
+                body: formData
+            })
+            .then(response => {
+                // Show success message
+                successMessage.style.display = 'block';
+                emailInput.value = ''; // Clear the input
+            })
+            .catch(error => {
+                // Show error message
+                errorMessage.style.display = 'block';
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>

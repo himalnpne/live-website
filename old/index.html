@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>HIMALNPNE</title>
+  
+  <!-- Site Icon (Favicon) -->
+  <link rel="icon" href="logo.png" type="image/png">
+
+  <!-- Preload Josefin Sans Font -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap"></noscript>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* Original styles */
+    :root {
+      --primary: #014b92; /* Dark blue */
+      --secondary: #c8002a; /* Red */
+      --accent: #c8002a; /* Red */
+      --dark: #1e293b; /* Dark background */
+      --light: #f8fafc; /* Light background */
+      --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+      --glass: rgba(255, 255, 255, 0.1); /* Glassmorphism effect */
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Soft shadow */
+      --blur: blur(10px); /* Blur effect for glassmorphism */
+      --logo-primary: #014b92; /* Logo primary color */
+      --logo-secondary: #c8002a; /* Logo secondary color */
+    }
+    
+    /* Dark mode styles */
+    body.dark-mode {
+      --light: #1e293b; /* Dark background */
+      --dark: #f8fafc; /* Light text */
+      --primary: #4a90e2; /* Light blue for dark mode */
+      --secondary: #ff6b6b; /* Light red for dark mode */
+      --accent: #ff6b6b; /* Light red for dark mode */
+      --glass: rgba(30, 41, 59, 0.1); /* Dark glassmorphism */
+      --logo-primary: #4a90e2; /* Logo primary color in dark mode */
+      --logo-secondary: #ff6b6b; /* Logo secondary color in dark mode */
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Josefin Sans', sans-serif;
+      background-color: var(--light);
+      color: var(--dark);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Add a tiling effect to the background */
+    body::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        linear-gradient(45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05)),
+        linear-gradient(45deg, rgba(255, 255, 255, 0.05) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.05) 75%, rgba(255, 255, 255, 0.05));
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 10px;
+      z-index: -3; /* Ensure it's behind other elements */
+      opacity: 0.5; /* Adjust opacity for subtlety */
+    }
+
+    /* Background gradient animation */
+    body::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, var(--primary), var(--secondary));
+      animation: rotate-gradient 20s linear infinite;
+      z-index: -2;
+      opacity: 0.05; /* Reduced opacity */
+    }
+
+    @keyframes rotate-gradient {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Glassmorphism effect for shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(70px);
+      z-index: -1;
+      opacity: 0.7;
+      background: var(--glass);
+      backdrop-filter: var(--blur);
+    }
+    
+    .shape-1 {
+      width: 300px;
+      height: 300px;
+      top: -150px;
+      left: -150px;
+      background: var(--primary);
+    }
+    
+    .shape-2 {
+      width: 400px;
+      height: 400px;
+      bottom: -200px;
+      right: -200px;
+      background: var(--secondary);
+    }
+
+    .shape-3 {
+      width: 200px;
+      height: 200px;
+      bottom: 10%;
+      left: 10%;
+      background: var(--primary);
+      opacity: 0.5;
+    }
+    
+    /* Container */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    
+    /* Maintenance Card */
+    .maintenance-card {
+      background: var(--glass);
+      backdrop-filter: var(--blur);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      max-width: 90%;
+      margin: 20px;
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.2); /* Glassmorphism border */
+    }
+
+    body.dark-mode .maintenance-card {
+      background: rgba(30, 41, 59, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Logo Container */
+    .logo-container {
+      margin-bottom: 20px;
+      position: relative;
+      background: var(--glass);
+      backdrop-filter: var(--blur);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    body.dark-mode .logo-container {
+      background: rgba(30, 41, 59, 0.2); /* Dark background for dark mode */
+    }
+    
+    .logo {
+      width: 120px;
+      height: auto;
+      filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.15));
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+    
+    .logo-glow {
+      position: absolute;
+      width: 140px;
+      height: 50px;
+      background: var(--primary);
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      filter: blur(40px);
+      opacity: 0.5;
+      z-index: -1;
+      border-radius: 50%;
+      animation: pulse 4s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.5;
+        transform: translateX(-50%) scale(1);
+      }
+      50% {
+        opacity: 0.7;
+        transform: translateX(-50%) scale(1.1);
+      }
+    }
+    
+    /* Title */
+    .title {
+      color: var(--dark);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      position: relative;
+      display: inline-block;
+    }
+
+    body.dark-mode .title {
+      color: var(--dark);
+    }
+    
+    .title-highlight {
+      color: var(--accent);
+    }
+
+    body.dark-mode .title-highlight {
+      color: var(--secondary);
+    }
+    
+    /* Divider */
+    .divider {
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 2px;
+      margin: 15px auto;
+      position: relative;
+    }
+
+    body.dark-mode .divider {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+    
+    .divider::before {
+      content: '';
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: var(--secondary);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      border-radius: 4px;
+      animation: rotate 4s linear infinite;
+    }
+
+    body.dark-mode .divider::before {
+      background: var(--secondary);
+    }
+    
+    @keyframes rotate {
+      to {
+        transform: translate(-50%, -50%) rotate(405deg);
+      }
+    }
+    
+    /* Message */
+    .message {
+      color: var(--dark);
+      font-size: 1rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+      max-width: 90%;
+    }
+
+    body.dark-mode .message {
+      color: var(--dark);
+    }
+    
+    /* Progress Section */
+    .progress-section {
+      width: 100%;
+      max-width: 400px;
+      margin-bottom: 30px;
+    }
+    
+    .progress-container {
+      width: 100%;
+      height: 8px;
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 10px;
+      width: 0;
+      transition: width 0.3s ease;
+    }
+
+    body.dark-mode .progress-bar {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+    
+    .progress-text {
+      color: var(--dark);
+      font-size: 0.8rem;
+      text-align: right;
+      opacity: 0.7;
+    }
+
+    body.dark-mode .progress-text {
+      color: var(--dark);
+    }
+    
+    /* Current Time Label */
+    .current-time-label {
+      font-size: 1rem;
+      color: var(--dark);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    body.dark-mode .current-time-label {
+      color: var(--dark);
+    }
+    
+    /* Countdown Section */
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .countdown-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .countdown-value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: white;
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    body.dark-mode .countdown-value {
+      background: var(--secondary);
+    }
+
+    .countdown-item:nth-child(2n) .countdown-value {
+      background: var(--secondary);
+    }
+
+    body.dark-mode .countdown-item:nth-child(2n) .countdown-value {
+      background: var(--primary);
+    }
+    
+    .countdown-value:hover {
+      transform: scale(1.1);
+    }
+    
+    .countdown-label {
+      font-size: 0.7rem;
+      color: var(--dark);
+      margin-top: 5px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      opacity: 0.7;
+    }
+
+    body.dark-mode .countdown-label {
+      color: var(--dark);
+    }
+    
+    /* Date Section */
+    .date {
+      font-size: 1rem;
+      color: var(--dark);
+      margin-top: 10px;
+      opacity: 0.8;
+    }
+
+    body.dark-mode .date {
+      color: var(--dark);
+    }
+    
+    /* Contact Section */
+    .contact-section {
+      margin-top: 20px;
+    }
+    
+    .contact-text {
+      color: var(--dark);
+      font-size: 1rem; /* Increased font size */
+      margin-bottom: 10px;
+      opacity: 0.8;
+    }
+
+    body.dark-mode .contact-text {
+      color: var(--dark);
+    }
+
+    .contact-text a {
+      color: var(--accent); /* Use accent red for email link */
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    body.dark-mode .contact-text a {
+      color: var(--secondary);
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    
+    .social-link {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    body.dark-mode .social-link {
+      background: var(--secondary);
+    }
+
+    .social-link:nth-child(2n) {
+      background: var(--secondary);
+    }
+
+    body.dark-mode .social-link:nth-child(2n) {
+      background: var(--primary);
+    }
+    
+    .social-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(0);
+      opacity: 0;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+    
+    .social-link:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .social-link:hover::before {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    /* Instagram Tooltip */
+    .social-link[aria-label="Instagram"] {
+      position: relative;
+    }
+
+    .social-link[aria-label="Instagram"]::after {
+      content: attr(aria-label);
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--dark);
+      color: var(--light);
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.7rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .social-link[aria-label="Instagram"]:hover::after {
+      opacity: 1;
+    }
+
+    body.dark-mode .social-link[aria-label="Instagram"]::after {
+      background: var(--light);
+      color: var(--dark);
+    }
+    
+    /* Footer */
+    .footer {
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .pulse-dot {
+      width: 10px;
+      height: 10px;
+      background-color: var(--secondary);
+      border-radius: 50%;
+      animation: pulse-dot 2s infinite;
+    }
+
+    body.dark-mode .pulse-dot {
+      background: var(--primary);
+    }
+    
+    @keyframes pulse-dot {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+      }
+    }
+    
+    .footer-text {
+      color: var(--dark);
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    body.dark-mode .footer-text {
+      color: var(--dark);
+    }
+    
+    /* Dark Mode Toggle Button */
+    .dark-mode-toggle {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--primary);
+      border: none;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: background 0.3s ease;
+    }
+
+    .dark-mode-toggle:hover {
+      background: var(--secondary);
+    }
+
+    body.dark-mode .dark-mode-toggle {
+      background: var(--secondary);
+    }
+
+    body.dark-mode .dark-mode-toggle:hover {
+      background: var(--primary);
+    }
+    
+    /* Floating Music Notes */
+    .music-note {
+      position: absolute;
+      font-size: 1.2rem;
+      color: var(--primary);
+      animation: float-note 6s infinite ease-in-out;
+      opacity: 0.7;
+    }
+
+    body.dark-mode .music-note {
+      color: var(--secondary);
+    }
+
+    @keyframes float-note {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-20px) rotate(360deg);
+      }
+    }
+
+    /* Floating Cars */
+    .car {
+      position: absolute;
+      width: 30px;
+      height: auto;
+      animation: float-car 10s infinite ease-in-out;
+      opacity: 0.8;
+    }
+
+    .car-1 {
+      animation-duration: 12s;
+      top: 5%;
+      left: 5%;
+    }
+
+    .car-2 {
+      animation-duration: 14s;
+      top: 15%;
+      left: 80%;
+    }
+
+    .car-3 {
+      animation-duration: 16s;
+      top: 60%;
+      left: 5%;
+    }
+
+    .car-4 {
+      animation-duration: 18s;
+      top: 80%;
+      left: 85%;
+    }
+
+    @keyframes float-car {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      25% {
+        transform: translateY(-20px) rotate(10deg);
+      }
+      50% {
+        transform: translateY(0) rotate(0deg);
+      }
+      75% {
+        transform: translateY(-20px) rotate(-10deg);
+      }
+    }
+
+    /* Responsiveness */
+    @media (max-width: 768px) {
+      .maintenance-card {
+        padding: 15px;
+      }
+
+      .logo {
+        width: 80px; /* Adjusted logo size for mobile */
+      }
+
+      .logo-glow {
+        width: 100px; /* Adjusted glow size for mobile */
+        height: 30px;
+      }
+
+      .title {
+        font-size: 1.5rem;
+      }
+
+      .message {
+        font-size: 0.9rem;
+      }
+
+      .countdown-value {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+      }
+
+      .countdown-label {
+        font-size: 0.6rem;
+      }
+
+      .date {
+        font-size: 0.9rem;
+      }
+
+      .contact-text {
+        font-size: 0.8rem;
+      }
+
+      .social-link {
+        width: 35px;
+        height: 35px;
+        font-size: 0.9rem;
+      }
+
+      .footer-text {
+        font-size: 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Main content wrapped in a container -->
+  <div class="main-content" id="main-content">
+    <!-- Floating Music Notes -->
+    <div class="music-note" style="top: 10%; left: 20%;">♪</div>
+    <div class="music-note" style="top: 25%; left: 75%;">♫</div>
+    <div class="music-note" style="top: 55%; left: 25%;">♪</div>
+    <div class="music-note" style="top: 85%; left: 70%;">♫</div>
+
+    <!-- Floating Cars -->
+    <div class="car car-1">
+      <img src="car1.svg" alt="Car 1">
+    </div>
+    <div class="car car-2">
+      <img src="car2.svg" alt="Car 2">
+    </div>
+    <div class="car car-3">
+      <img src="car3.svg" alt="Car 3">
+    </div>
+    <div class="car car-4">
+      <img src="car4.svg" alt="Car 4">
+    </div>
+
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    
+    <div class="container">
+      <div class="maintenance-card">
+        <!-- Dark Mode Toggle Button -->
+        <button class="dark-mode-toggle" aria-label="Toggle Dark Mode">
+          <i class="fas fa-sun"></i>
+        </button>
+        
+        <div class="logo-container">
+          <!-- SVG Logo -->
+          <svg class="logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1305.67 1133.36">
+            <defs>
+              <style>
+                .cls-1 {
+                  fill: var(--logo-primary); /* Use CSS variable for primary color */
+                }
+                .cls-2 {
+                  fill: var(--logo-secondary); /* Use CSS variable for secondary color */
+                }
+              </style>
+            </defs>
+            <g>
+              <path class="cls-1" d="M.17,900.3v-17.18h34.36v42.33h48.33c20.34,0,35.56,6.85,46.06,20.61,7.89,10.34,12.34,24.11,13.6,41.38h.4v79.08h-34.36v-51.22h-.03v-17.18c0-14.74-2.22-25.17-6.87-31.25-3.59-4.71-9.81-7.06-18.82-7.06h-48.33v106.71H.17v-106.71h-.17v-34.36h.17v-25.15h0Z"/>
+              <path class="cls-1" d="M181.19,883.12c9.49,0,17.18,7.69,17.18,17.18s-7.69,17.18-17.18,17.18-17.18-7.69-17.18-17.18,7.69-17.18,17.18-17.18ZM164.01,925.45h34.36v141.07h-34.36v-141.07Z"/>
+              <path class="cls-1" d="M221.91,942.63v-17.18h34.36v4.7c12.67-5.35,9.37-4.7,25.68-4.7,17.59,0,29.02,1.73,42.87,16.81,13.86-15.08,25.28-16.81,42.87-16.81,19.07,0,32.36,2.66,46.06,20.61,7.89,10.34,12.35,24.11,13.61,41.38h.4v79.08h-34.36v-51.22h-.03v-17.18c0-14.74-2.22-25.17-6.87-31.25-3.59-4.71-9.81-7.06-18.82-7.06s-15.22,2.35-18.82,7.06c-4.57,5.99-6.8,16.18-6.87,30.56v69.09h-34.36v-51.23h-.03v-17.18c0-14.74-2.22-25.17-6.87-31.25-3.59-4.71-9.81-7.06-18.82-7.06s-15.22,2.35-18.82,7.06c-4.57,5.99-6.8,16.18-6.87,30.56v69.09h-34.36v-123.89h0Z"/>
+              <path class="cls-1" d="M551.87,966.86h34.36v99.65h-34.36v-5.93c-7.89,3.8-16.73,5.93-26.05,5.93h-22.45c-29.34,0-47.9-19.04-55.83-43.41-2.82-8.67-4.23-17.95-4.23-27.13s1.41-18.46,4.23-27.12c7.94-24.37,26.49-43.41,55.83-43.41h39.63v34.36h-39.63c-11.83,0-19.63,8.62-23.22,19.65-1.66,5.1-2.49,10.76-2.49,16.52s.83,11.43,2.49,16.52c3.59,11.03,11.39,19.65,23.22,19.65h22.45c7.15,0,13.66-2.94,18.38-7.66,4.73-4.73,7.66-11.23,7.66-18.38v-39.25ZM586.22,940.16c0,8.13-6.59,14.72-14.72,14.72s-14.71-6.59-14.71-14.72,6.58-14.71,14.71-14.71,14.72,6.58,14.72,14.71Z"/>
+              <path class="cls-1" d="M607.31,883.12h34.36v114.26c0,12.24,1.87,20.72,5.35,26.3,2.84,4.55,7.29,7.49,13.08,9.34l16.3,5.23-10.47,32.61-16.3-5.23c-13.46-4.32-24.2-11.76-31.74-23.84-6.89-11.04-10.59-25.46-10.59-44.42v-114.26Z"/>
+              <path class="cls-1" d="M688.79,925.45h34.36v4.7c6.11-2.58,12.99-4.09,20.65-4.55v-.15h34.36v.26c17.03,1.37,30.07,8.14,39.38,20.35,7.89,10.34,12.34,24.11,13.6,41.38h.4v79.08h-34.36v-51.22h-.03v-17.18c0-14.74-2.22-25.17-6.87-31.25-3.59-4.71-9.81-7.06-18.82-7.06h-22.65c-9.01,0-15.22,2.35-18.82,7.06-4.57,5.99-6.8,16.18-6.86,30.56v69.09h-34.36v-51.23h0v-17.7s0-72.14,0-72.14Z"/>
+              <path class="cls-1" d="M886.89,1133.36h-34.36v-207.91h82.86c29.34,0,47.9,19.04,55.83,43.41,2.82,8.67,4.23,17.95,4.23,27.12s-1.41,18.45-4.23,27.12c-7.94,24.37-26.5,43.41-55.83,43.41h-29.15v-34.36h29.15c11.84,0,19.63-8.62,23.22-19.66,1.66-5.1,2.49-10.76,2.49-16.52s-.83-11.43-2.49-16.52c-3.59-11.03-11.39-19.65-23.22-19.65h-48.5v173.56Z"/>
+              <path class="cls-1" d="M1013.41,925.45h34.36v4.7c6.11-2.58,12.99-4.09,20.65-4.55v-.15h34.36v.26c17.04,1.37,30.07,8.14,39.38,20.35,7.89,10.34,12.35,24.11,13.61,41.38h.4v79.08h-34.36v-51.22h-.03v-17.18c0-14.74-2.22-25.17-6.87-31.25-3.59-4.71-9.81-7.06-18.81-7.06h-22.66c-9.01,0-15.22,2.35-18.82,7.06-4.57,5.99-6.8,16.18-6.86,30.56v69.09h-34.36v-51.23h0v-17.7s0-72.14,0-72.14Z"/>
+              <path class="cls-1" d="M1305.67,1032.16v34.36h-73.96c-29.34,0-47.9-19.04-55.83-43.41-2.82-8.67-4.23-17.95-4.23-27.12s1.41-18.46,4.23-27.13c7.94-24.37,26.49-43.41,55.83-43.41h73.96v34.36h-73.96c-11.6,0-19.32,8.28-23,19h60.26v34.36h-60.26c3.68,10.72,11.4,19,23,19h73.96Z"/>
+            </g>
+            <g>
+              <path class="cls-2" d="M531.83,174.07c0-47.64,17.03-88.5,51.12-122.59S658.11.34,706.14.34v659.5c0,47.66-17.05,88.52-51.14,122.61s-75.14,51.12-123.17,51.12v-343.41l-330.05-.58v170.25c0,47.66-16.95,88.52-50.84,122.61-33.91,34.09-74.86,51.12-122.89,51.12V174.07c0-47.64,16.94-88.5,50.84-122.59C112.78,17.39,153.75.34,201.78.34v343.98h330.05v-170.25Z"/>
+              <path class="cls-2" d="M1272.24,638.58c0,53.84-18.59,99.36-55.78,136.55s-83.3,56.56-138.3,58.11l-371.3-567.11v392.8c0,48.03-16.95,89.09-50.84,123.19-33.91,34.09-74.86,51.12-122.89,51.12V195.81c0-54.22,18.78-100.03,56.36-137.41C627.06,21.03,650.73,1.9,706.14.34l392.36,566.19V173.73c0-47.64,16.94-88.5,50.84-122.59,33.89-34.09,74.86-51.14,122.91-51.14v638.58Z"/>
+            </g>
+          </svg>
+          <div class="logo-glow"></div>
+        </div>
+        
+        <h1 class="title">We're <span class="title-highlight">Under Maintenance</span></h1>
+        
+        <div class="divider"></div>
+        
+        <p class="message">We're currently updating our website to serve you better. We'll be back online shortly with new features and improvements.</p>
+        
+        <div class="progress-section">
+          <div class="progress-container">
+            <div class="progress-bar"></div>
+          </div>
+          <p class="progress-text">5% Completed</p>
+        </div>
+        
+        <!-- Email Section -->
+        <p class="contact-text">Email: <a href="mailto:info@neupanehimal.com.np">info@neupanehimal.com.np</a></p>
+        
+        <!-- Current Time Label -->
+        <div class="current-time-label">Current Time</div>
+        
+        <!-- Countdown Section (Now Displays Current Time) -->
+        <div class="countdown">
+          <div class="countdown-item">
+            <div class="countdown-value" id="hours">00</div>
+            <div class="countdown-label">Hours</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-value" id="minutes">00</div>
+            <div class="countdown-label">Minutes</div>
+          </div>
+          <div class="countdown-item">
+            <div class="countdown-value" id="seconds">00</div>
+            <div class="countdown-label">Seconds</div>
+          </div>
+        </div>
+        
+        <!-- Date Section -->
+        <div class="date" id="current-date">Loading date...</div>
+        
+        <div class="contact-section">
+          <p class="contact-text">Stay connected with us</p>
+          <div class="social-links">
+            <a href="https://instagram.com/himalnpne" class="social-link" aria-label="himalnpne">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://signal.me/#eu/AfMOsRG2KNDpql9qeXOSKJZdsSynANFcFS4r8UUEW-8fnVVO61FMhYsQUOYqMD-w" class="social-link" aria-label="Signal">
+              <!-- Inline SVG for Signal Icon -->
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20" fill="currentColor">
+                <path d="M256 0c13.3 0 26.3 1 39.1 3l-3.7 23.7C279.9 24.9 268 24 256 24s-23.9 .9-35.4 2.7L216.9 3C229.7 1 242.7 0 256 0zm60.8 7.3l-5.7 23.3c23.4 5.7 45.4 14.9 65.4 27.1l12.5-20.5c-22.1-13.4-46.4-23.6-72.2-29.9zm90.5 42.2L393.1 68.8c19.1 14 36 30.9 50.1 50.1l19.4-14.2C447 83.6 428.4 65 407.3 49.5zm67.5 73.6l-20.5 12.5c12.2 20 21.4 42 27.1 65.4l23.3-5.7c-6.3-25.8-16.5-50.1-29.9-72.2zM509 216.9l-23.7 3.7c1.8 11.5 2.7 23.4 2.7 35.4s-.9 23.9-2.7 35.4l23.7 3.7c1.9-12.7 3-25.8 3-39.1s-1-26.3-3-39.1zM454.3 376.5c12.2-20 21.4-42 27.1-65.4l23.3 5.7c-6.3 25.8-16.5 50.1-29.9 72.2l-20.5-12.5zm-11.1 16.6l19.4 14.2c-15.5 21.1-34.1 39.8-55.2 55.2l-14.2-19.4c19.1-14 36-30.9 50.1-50.1zm-66.7 61.2l12.5 20.5c-22.1 13.4-46.4 23.6-72.2 29.9l-5.7-23.3c23.4-5.7 45.4-14.9 65.4-27.1zm-85.1 31l3.7 23.7c-12.7 1.9-25.8 3-39.1 3s-26.3-1-39.1-3l3.7-23.7c11.5 1.8 23.4 2.7 35.4 2.7s23.9-.9 35.4-2.7zm-90.5-3.9l-5.7 23.3c-19.4-4.7-37.9-11.6-55.3-20.5l-24.3 5.7-5.5-23.4 32.8-7.7 7.8 4c15.7 8 32.5 14.3 50.1 18.6zM90 471.3l5.5 23.4-41.6 9.7C26 510.8 1.2 486 7.6 458.2l9.7-41.6L40.7 422 31 463.7c-2.4 10.4 6.9 19.7 17.3 17.3L90 471.3zM45.5 401.8l-23.4-5.5L27.8 372C18.9 354.7 12 336.1 7.3 316.7l23.3-5.7c4.3 17.6 10.6 34.4 18.6 50.1l4 7.8-7.7 32.8zM26.7 291.4L3 295.1C1 282.3 0 269.3 0 256s1-26.3 3-39.1l23.7 3.7C24.9 232.1 24 244 24 256s.9 23.9 2.7 35.4zm3.9-90.5L7.3 195.2c6.3-25.8 16.5-50.1 29.9-72.2l20.5 12.5c-12.2 20-21.4 42-27.1 65.4zm38.3-82.1L49.5 104.7C65 83.6 83.6 65 104.7 49.5l14.2 19.4c-19.1 14-36 30.9-50.1 50.1zm66.7-61.2L123.1 37.2c22.1-13.4 46.4-23.6 72.2-29.9l5.7 23.3c-23.4 5.7-45.4 14.9-65.4 27.1zM464 256c0 114.9-93.1 208-208 208c-36.4 0-70.7-9.4-100.5-25.8c-2.9-1.6-6.2-2.1-9.4-1.4L53.6 458.4l21.6-92.5c.7-3.2 .2-6.5-1.4-9.4C57.4 326.7 48 292.4 48 256C48 141.1 141.1 48 256 48s208 93.1 208 208z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <div class="footer">
+          <div class="pulse-dot"></div>
+          <p class="footer-text">Our team is working hard to improve your experience</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Detect user's preferred color scheme
+    function detectColorScheme() {
+      const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const body = document.body;
+      const darkModeToggle = document.querySelector('.dark-mode-toggle');
+      
+      // Set initial mode based on system preference
+      if (darkModeMediaQuery.matches) {
+        body.classList.add('dark-mode');
+        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+      } else {
+        body.classList.remove('dark-mode');
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      }
+      
+      // Listen for changes in system preference
+      darkModeMediaQuery.addEventListener('change', (e) => {
+        if (e.matches) {
+          body.classList.add('dark-mode');
+          darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+          body.classList.remove('dark-mode');
+          darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+      });
+    }
+
+    // Call the function to detect the color scheme
+    detectColorScheme();
+
+    // Update current time and date
+    function updateDateTime() {
+      const now = new Date();
+
+      // Format time
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+
+      // Format date
+      const days = String(now.getDate()).padStart(2, '0');
+      const months = String(now.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+      const years = now.getFullYear();
+      const dateString = `${days}/${months}/${years}`;
+
+      // Update countdown timer with current time
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+
+      // Update date
+      document.getElementById("current-date").innerText = dateString;
+    }
+
+    // Update the date and time every second
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+
+    // Dark Mode Toggle
+    const darkModeToggle = document.querySelector('.dark-mode-toggle');
+    const body = document.body;
+
+    darkModeToggle.addEventListener('click', () => {
+      body.classList.toggle('dark-mode');
+      const isDarkMode = body.classList.contains('dark-mode');
+      darkModeToggle.innerHTML = isDarkMode ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+
+    // Random Oscillating Progress Bar and Percentage
+    const progressBar = document.querySelector('.progress-bar');
+    const progressText = document.querySelector('.progress-text');
+
+    let progress = 5; // Start at 5%
+    let increasing = true; // Flag to track whether progress is increasing or decreasing
+
+    const getRandomTarget = () => {
+      // Generate a random target between 5% and 95%
+      return Math.floor(Math.random() * (95 - 5 + 1)) + 5;
+    };
+
+    let target = getRandomTarget(); // Initial random target
+
+    const updateProgress = () => {
+      if (increasing) {
+        // Increase progress
+        progress += 1;
+        if (progress >= target) {
+          increasing = false; // Switch to decreasing
+          target = getRandomTarget(); // Set a new random target
+        }
+      } else {
+        // Decrease progress
+        progress -= 1;
+        if (progress <= target) {
+          increasing = true; // Switch to increasing
+          target = getRandomTarget(); // Set a new random target
+        }
+      }
+
+      // Ensure progress stays within bounds (5% to 95%)
+      progress = Math.max(5, Math.min(95, progress));
+
+      // Update progress bar and text
+      progressBar.style.width = `${progress}%`;
+      progressText.innerText = `${progress}% Completed`;
+
+      // Repeat the process
+      setTimeout(updateProgress, 100); // Adjust speed by changing the timeout value
+    };
+
+    // Start the progress animation
+    updateProgress();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vibe Check | Digital Insights</title>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+    
+    <style>
+        /* Modern redesign styles */
+        :root {
+            --primary: #2563eb; /* Modern blue */
+            --secondary: #f43f5e; /* Modern pink/red */
+            --accent: #8b5cf6; /* Purple accent */
+            --accent2: #14b8a6; /* Teal accent */
+            --accent3: #f59e0b; /* Amber accent */
+            --dark: #0f172a; /* Dark background */
+            --light: #f8fafc; /* Light background */
+            --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
+            --gradient2: linear-gradient(135deg, var(--accent), var(--accent2));
+            --gradient3: linear-gradient(135deg, var(--accent3), var(--primary));
+            --glass: rgba(255, 255, 255, 0.1); /* Glassmorphism effect */
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+            --blur: blur(10px); /* Blur effect for glassmorphism */
+            --content-max-width: 1200px;
+            --section-spacing: 6rem;
+            --card-radius: 6px; /* Changed to 6px as requested */
+            --logo-dark-blue: #014b92;
+            --logo-red: #c8002a;
+        }
+        
+        body.dark-mode {
+            --light: #0f172a; /* Dark background */
+            --dark: #f8fafc; /* Light text */
+            --primary: #60a5fa; /* Light blue for dark mode */
+            --secondary: #f87171; /* Light red for dark mode */
+            --accent: #a78bfa; /* Light purple for dark mode */
+            --glass: rgba(15, 23, 42, 0.3); /* Dark glassmorphism */
+            --logo-dark-blue: #60a5fa;  /* Lighter blue for dark mode */
+            --logo-red: #f87171;        /* Lighter red for dark mode */
+            background-color: var(--light);
+            color: var(--dark);
+        }
+
+        /* Josefin Sans - Regular */
+        @font-face {
+            font-family: 'Josefin Sans';
+            font-style: normal;
+            font-weight: 400;
+            src: url('font/static/JosefinSans-Regular.ttf') format('truetype');
+        }
+
+        /* Josefin Sans - Bold */
+        @font-face {
+            font-family: 'Josefin Sans';
+            font-style: normal;
+            font-weight: 700;
+            src: url('font/static/JosefinSans-Bold.ttf') format('truetype');
+        }
+
+        /* Josefin Sans - Italic */
+        @font-face {
+            font-family: 'Josefin Sans';
+            font-style: italic;
+            font-weight: 400;
+            src: url('font/static/JosefinSans-Italic.ttf') format('truetype');
+        }
+
+        /* Josefin Sans - Bold Italic */
+        @font-face {
+            font-family: 'Josefin Sans';
+            font-style: italic;
+            font-weight: 700;
+            src: url('font/static/JosefinSans-BoldItalic.ttf') format('truetype');
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow-x: hidden;
+            transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Logo styling */
+        header nav .logo {
+            display: flex;
+            align-items: center;
+            height: 50px;
+            padding: 5px 0;
+        }
+
+        header nav .logo svg {
+            height: 100%;
+            width: auto;
+            transition: all 0.3s ease;
+        }
+
+        header nav .logo:hover svg {
+            transform: scale(1.05);
+        }
+
+        /* Ensure logo colors change in dark mode */
+        body.dark-mode .logo .cls-1 {
+            fill: var(--logo-dark-blue);
+        }
+
+        body.dark-mode .logo .cls-2 {
+            fill: var(--logo-red);
+        }
+
+        /* Particle background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+            opacity: 0.5;
+        }
+
+        /* Tiling effect */
+        .tiling-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(45deg, var(--primary) 25%, transparent 25%),
+                linear-gradient(-45deg, var(--primary) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, var(--primary) 75%),
+                linear-gradient(-45deg, transparent 75%, var(--primary) 75%);
+            background-size: 40px 40px;
+            background-position: 0 0, 0 20px, 20px -20px, -20px 0px;
+            opacity: 0.03;
+            z-index: -3;
+        }
+
+        /* Modernized background gradient */
+        body::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            animation: rotate-gradient 30s linear infinite;
+            z-index: -2;
+            opacity: 0.07;
+        }
+
+        @keyframes rotate-gradient {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Enhanced Glassmorphism effect for shapes */
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.6;
+            background: var(--glass);
+            backdrop-filter: var(--blur);
+            animation: pulse 8s ease-in-out infinite alternate;
+        }
+        
+        .shape-1 {
+            width: 400px;
+            height: 400px;
+            top: -200px;
+            left: -200px;
+            background: var(--primary);
+            animation-delay: 0s;
+        }
+        
+        .shape-2 {
+            width: 500px;
+            height: 500px;
+            bottom: -250px;
+            right: -250px;
+            background: var(--secondary);
+            animation-delay: 2s;
+        }
+
+        .shape-3 {
+            width: 300px;
+            height: 300px;
+            bottom: 20%;
+            left: 10%;
+            background: var(--accent);
+            opacity: 0.4;
+            animation-delay: 4s;
+        }
+
+        .shape-4 {
+            width: 250px;
+            height: 250px;
+            top: 30%;
+            right: 15%;
+            background: var(--primary);
+            opacity: 0.3;
+            animation-delay: 6s;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1) rotate(0deg);
+                opacity: 0.6;
+            }
+            50% {
+                transform: scale(1.1) rotate(5deg);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(0.9) rotate(-5deg);
+                opacity: 0.7;
+            }
+        }
+
+        /* Floating Privacy Icons with enhanced animations */
+        .privacy-icon {
+            position: absolute;
+            font-size: 1.5rem;
+            color: var(--primary);
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.8;
+        }
+
+        .privacy-icon.lock {
+            top: 15%;
+            left: 5%;
+            animation-duration: 8s;
+        }
+
+        .privacy-icon.shield {
+            top: 25%;
+            right: 5%;
+            animation-duration: 10s;
+        }
+
+        .privacy-icon.encryption {
+            bottom: 18%;
+            left: 20%;
+            animation-duration: 12s;
+        }
+
+        .privacy-icon.key {
+            bottom: 8%;
+            right: 15%;
+            animation-duration: 9s;
+        }
+
+        /* Floating Interest Icons */
+        .interest-icon {
+            position: absolute;
+            font-size: 1.5rem;
+            color: var(--accent);
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.8;
+            z-index: 1;
+        }
+
+        /* Position each interest icon */
+        .interest-icon.car {
+            top: 20%;
+            left: 15%;
+            animation-duration: 7s;
+            color: var(--primary);
+        }
+
+        .interest-icon.plane {
+            top: 30%;
+            right: 20%;
+            animation-duration: 9s;
+            color: var(--accent2);
+        }
+
+        .interest-icon.bike {
+            bottom: 25%;
+            left: 25%;
+            animation-duration: 8s;
+            color: var(--secondary);
+        }
+
+        .interest-icon.jet {
+            top: 40%;
+            right: 10%;
+            animation-duration: 10s;
+            color: var(--accent3);
+        }
+
+        .interest-icon.tank {
+            bottom: 15%;
+            right: 30%;
+            animation-duration: 11s;
+            color: var(--primary);
+        }
+
+        .interest-icon.earthmover {
+            top: 60%;
+            left: 20%;
+            animation-duration: 12s;
+            color: var(--secondary);
+        }
+
+        .interest-icon.camera {
+            top: 70%;
+            right: 25%;
+            animation-duration: 9s;
+            color: var(--accent);
+        }
+
+        .interest-icon.action-camera {
+            top: 50%;
+            left: 30%;
+            animation-duration: 8s;
+            color: var(--accent2);
+        }
+
+        .interest-icon.gun {
+            bottom: 30%;
+            left: 10%;
+            animation-duration: 10s;
+            color: var(--accent3);
+        }
+
+        .interest-icon.hiking {
+            top: 25%;
+            right: 30%;
+            animation-duration: 11s;
+            color: var(--primary);
+        }
+
+        .interest-icon.pizza {
+            bottom: 20%;
+            right: 15%;
+            animation-duration: 7s;
+            color: var(--secondary);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+            25% {
+                transform: translateY(-15px) rotate(-2deg);
+                text-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+            }
+            50% {
+                transform: translateY(-25px) rotate(0deg);
+                text-shadow: 0 25px 35px rgba(0, 0, 0, 0.1);
+            }
+            75% {
+                transform: translateY(-10px) rotate(2deg);
+                text-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        /* Modern Header with animation */
+        header {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 1.2rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        header:hover {
+            box-shadow: 0 6px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: var(--content-max-width);
+            margin: 0 auto;
+        }
+
+        /* Updated Navigation Layout */
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-center {
+            display: flex;
+            justify-content: center;
+            flex-grow: 1;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        header nav ul {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        header nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        header nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Contact Button */
+        .contact-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--card-radius);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Updated Dark Mode Toggle in Header */
+        .dark-mode-toggle {
+            position: relative;
+            background: var(--primary);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            font-size: 1rem;
+            overflow: hidden;
+        }
+
+        .dark-mode-toggle::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .dark-mode-toggle:hover {
+            transform: rotate(45deg) scale(1.1);
+            background: var(--accent);
+        }
+
+        .dark-mode-toggle:active::before {
+            width: 150px;
+            height: 150px;
+        }
+
+        body.dark-mode .dark-mode-toggle {
+            background: var(--secondary);
+        }
+
+        body.dark-mode .dark-mode-toggle:hover {
+            background: var(--accent);
+        }
+
+        /* Mobile Menu Toggle Button */
+        .mobile-menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            background: var(--glass);
+            backdrop-filter: var(--blur);
+            -webkit-backdrop-filter: var(--blur);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-toggle:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        /* Mobile Menu Overlay */
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            max-width: 300px;
+            height: 100vh;
+            background: var(--glass);
+            backdrop-filter: var(--blur);
+            -webkit-backdrop-filter: var(--blur);
+            z-index: 1002;
+            padding: 5rem 2rem;
+            transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu a {
+            color: var(--dark);
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            transform: translateX(-20px);
+            opacity: 0;
+            padding: 0.5rem 1rem;
+            border-radius: var(--card-radius);
+        }
+
+        .mobile-menu.active a {
+            animation: slide-in 0.4s forwards;
+        }
+
+        .mobile-menu.active a:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .mobile-menu.active a:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .mobile-menu.active a:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes slide-in {
+            0% {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .mobile-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            padding-left: 1.5rem;
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .close-menu:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(90deg);
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 0 2rem;
+            margin: 0 auto;
+            width: 100%;
+            max-width: var(--content-max-width);
+        }
+
+        /* Vibe Check Section */
+        .vibe-section {
+            padding: 4rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .vibe-header {
+            margin-bottom: 3rem;
+        }
+
+        .vibe-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .vibe-header p {
+            font-size: 1.2rem;
+            color: var(--dark);
+            opacity: 0.8;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .playlist-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        .playlist-card {
+            background: var(--glass);
+            backdrop-filter: var(--blur);
+            border-radius: var(--card-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .playlist-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .playlist-card h2 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .playlist-embed {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* Enhanced Footer with animations */
+        footer {
+            background: var(--glass);
+            backdrop-filter: var(--blur);
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: var(--gradient3);
+            animation: slide 3s linear infinite;
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        footer .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        footer .social-links a {
+            position: relative;
+            color: var(--dark);
+            font-size: 1.5rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        footer .social-links a::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: var(--primary);
+            opacity: 0.2;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        footer .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        footer .social-links a:hover::before {
+            width: 150px;
+            height: 150px;
+        }
+
+        footer p {
+            font-size: 1rem;
+            color: var(--dark);
+            opacity: 0.8;
+        }
+
+        /* Enhanced Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--gradient);
+            z-index: 1001;
+            width: 0%;
+            transition: width 0.2s ease;
+        }
+
+        /* Button hover effects */
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: var(--card-radius);
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            header nav ul {
+                display: none;
+            }
+
+            .nav-center {
+                display: none;
+            }
+
+            .nav-right .contact-btn,
+            .nav-right .dark-mode-toggle {
+                display: none !important;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .vibe-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .vibe-header p {
+                font-size: 1rem;
+            }
+
+            .playlist-container {
+                padding: 0 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator"></div>
+    
+    <!-- Particle.js Background -->
+    <div id="particles-js"></div>
+    
+    <!-- Tiling Background -->
+    <div class="tiling-background"></div>
+
+    <!-- Shapes -->
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+    <div class="shape shape-4"></div>
+
+    <!-- Floating Privacy Icons -->
+    <div class="privacy-icon lock">
+        <i class="fas fa-lock"></i>
+    </div>
+    <div class="privacy-icon shield">
+        <i class="fas fa-shield-alt"></i>
+    </div>
+    <div class="privacy-icon encryption">
+        <i class="fas fa-key"></i>
+    </div>
+    <div class="privacy-icon key">
+        <i class="fas fa-user-secret"></i>
+    </div>
+
+    <!-- Floating Interest Icons -->
+    <div class="interest-icon car">
+        <i class="fas fa-car"></i>
+    </div>
+    <div class="interest-icon plane">
+        <i class="fas fa-plane"></i>
+    </div>
+    <div class="interest-icon bike">
+        <i class="fas fa-motorcycle"></i>
+    </div>
+    <div class="interest-icon jet">
+        <i class="fas fa-fighter-jet"></i>
+    </div>
+    <div class="interest-icon tank">
+        <i class="fas fa-tank"></i>
+    </div>
+    <div class="interest-icon earthmover">
+        <i class="fas fa-tractor"></i>
+    </div>
+    <div class="interest-icon camera">
+        <i class="fas fa-camera"></i>
+    </div>
+    <div class="interest-icon action-camera">
+        <i class="fas fa-video"></i>
+    </div>
+    <div class="interest-icon gun">
+        <i class="fas fa-gun"></i>
+    </div>
+    <div class="interest-icon hiking">
+        <i class="fas fa-hiking"></i>
+    </div>
+    <div class="interest-icon pizza">
+        <i class="fas fa-pizza-slice"></i>
+    </div>
+
+    <!-- Header with dark mode toggle -->
+    <header>
+        <nav>
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1305.67 1133.36" width="150" height="130">
+                        <defs>
+                            <style>
+                                .cls-1 { fill: var(--logo-dark-blue); }
+                                .cls-2 { fill: var(--logo-red); }
+                                .cls-1, .cls-2 { stroke-width: 0px; }
+                            </style>
+                        </defs>
+                        <g>
+                            <path class="cls-1" d="M.17,900.3v-17.18h34.36v42.33h48.33c20.34,0,35.56,6.85,46.06,20.61,7.89,10.34,12.34,24.11,13.6,41.38h.4v79.08h-34.36v-51.22h-.03v-17.18c0-14.74-2.22-25.17-6.87-31.25-3.59-4.71-9.81-7.06-18.82-7.06h-48.33v106.71H.17v-106.71h-.17v-34.36h.17v-25.15h0Z"/>
+                            <path class="cls-1" d="M181.19,883.12c9.49,0,17.18,7.69,17.18,17.18s-7.69,17.18-17.18,17.18-17.18-7.69-17.18-17.18,7.69-17.18,17.18-17.18ZM164.01,925.45h34.36v141.07h-34.36v-141.07Z"/>
+                            <path class="cls-1" d="M221.91,942.63v-17.18h34.36v4.7c12.67-5.35,9.37-4.7,25.68-4.7,17.59,0,29.02,1.73,42.87,16.81,13.86-15.08,25.28-16.81,42.87-16.81,19.07,0,32.36,2.66,46.06,20.61,7.89,10.34,12.35,24.11,13.61,41.38h.4v79.08h-34.36v-51.22h-.03v-17.18c0-14.74-2.22-25.17-6.87-31.25-3.59-4.71-9.81-7.06-18.82-7.06s-15.22,2.35-18.82,7.06c-4.57,5.99-6.8,16.18-6.87,30.56v69.09h-34.36v-51.23h-.03v-17.18c0-14.74-2.22-25.17-6.87-31.25-3.59-4.71-9.81-7.06-18.82-7.06s-15.22,2.35-18.82,7.06c-4.57,5.99-6.8,16.18-6.87,30.56v69.09h-34.36v-123.89h0Z"/>
+                            <path class="cls-1" d="M551.87,966.86h34.36v99.65h-34.36v-5.93c-7.89,3.8-16.73,5.93-26.05,5.93h-22.45c-29.34,0-47.9-19.04-55.83-43.41-2.82-8.67-4.23-17.95-4.23-27.13s1.41-18.46,4.23-27.12c7.94-24.37,26.49-43.41,55.83-43.41h39.63v34.36h-39.63c-11.83,0-19.63,8.62-23.22,19.65-1.66,5.1-2.49,10.76-2.49,16.52s.83,11.43,2.49,16.52c3.59,11.03,11.39,19.65,23.22,19.65h22.45c7.15,0,13.66-2.94,18.38-7.66,4.73-4.73,7.66-11.23,7.66-18.38v-39.25ZM586.22,940.16c0,8.13-6.59,14.72-14.72,14.72s-14.71-6.59-14.71-14.72,6.58-14.71,14.71-14.71,14.72,6.58,14.72,14.71Z"/>
+                            <path class="cls-1" d="M607.31,883.12h34.36v114.26c0,12.24,1.87,20.72,5.35,26.3,2.84,4.55,7.29,7.49,13.08,9.34l16.3,5.23-10.47,32.61-l16.3-5.23c-13.46-4.32-24.2-11.76-31.74-23.84-6.89-11.04-10.59-25.46-10.59-44.42v-114.26Z"/>
+                            <path class="cls-1" d="M688.79,925.45h34.36v4.7c6.11-2.58,12.99-4.09,20.65-4.55v-.15h34.36v.26c17.03,1.37,30.07,8.14,39.38,20.35,7.89,10.34,12.34,24.11,13.6,41.38h.4v79.08h-34.36v-51.22h-.03v-17.18c0-14.74-2.22-25.17-6.87-31.25-3.59-4.71-9.81-7.06-18.82-7.06h-22.65c-9.01,0-15.22,2.35-18.82,7.06-4.57,5.99-6.8,16.18-6.86,30.56v69.09h-34.36v-51.23h0v-17.7s0-72.14,0-72.14Z"/>
+                            <path class="cls-1" d="M886.89,1133.36h-34.36v-207.91h82.86c29.34,0,47.9,19.04,55.83,43.41,2.82,8.67,4.23,17.95,4.23,27.12s-1.41,18.45-4.23,27.12c-7.94,24.37-26.5,43.41-55.83,43.41h-29.15v-34.36h29.15c11.84,0,19.63-8.62,23.22-19.66,1.66-5.1,2.49-10.76,2.49-16.52s-.83-11.43-2.49-16.52c-3.59-11.03-11.39-19.65-23.22-19.65h-48.5v173.56Z"/>
+                            <path class="cls-1" d="M1013.41,925.45h34.36v4.7c6.11-2.58,12.99-4.09,20.65-4.55v-.15h34.36v.26c17.04,1.37,30.07,8.14,39.38,20.35,7.89,10.34,12.35,24.11,13.61,41.38h.4v79.08h-34.36v-51.22h-.03v-17.18c0-14.74-2.22-25.17-6.87-31.25-3.59-4.71-9.81-7.06-18.81-7.06h-22.66c-9.01,0-15.22,2.35-18.82,7.06-4.57,5.99-6.8,16.18-6.86,30.56v69.09h-34.36v-51.23h0v-17.7s0-72.14,0-72.14Z"/>
+                            <path class="cls-1" d="M1305.67,1032.16v34.36h-73.96c-29.34,0-47.9-19.04-55.83-43.41-2.82-8.67-4.23-17.95-4.23-27.12s1.41-18.46,4.23-27.13c7.94-24.37,26.49-43.41,55.83-43.41h73.96v34.36h-73.96c-11.6,0-19.32,8.28-23,19h60.26v34.36h-60.26c3.68,10.72,11.4,19,23,19h73.96Z"/>
+                        </g>
+                        <g>
+                            <path class="cls-2" d="M531.83,174.07c0-47.64,17.03-88.5,51.12-122.59S658.11.34,706.14.34v659.5c0,47.66-17.05,88.52-51.14,122.61s-75.14,51.12-123.17,51.12v-343.41l-330.05-.58v170.25c0,47.66-16.95,88.52-50.84,122.61-33.91,34.09-74.86,51.12-122.89,51.12V174.07c0-47.64,16.94-88.5,50.84-122.59C112.78,17.39,153.75.34,201.78.34v343.98h330.05v-170.25Z"/>
+                            <path class="cls-2" d="M1272.24,638.58c0,53.84-18.59,99.36-55.78,136.55s-83.3,56.56-138.3,58.11l-371.3-567.11v392.8c0,48.03-16.95,89.09-50.84,123.19-33.91,34.09-74.86,51.12-122.89,51.12V195.81c0-54.22,18.78-100.03,56.36-137.41C627.06,21.03,650.73,1.9,706.14.34l392.36,566.19V173.73c0-47.64,16.94-88.5,50.84-122.59,33.89-34.09,74.86-51.14,122.91-51.14v638.58Z"/>
+                        </g>
+                    </svg>
+                </a>
+            </div>
+            
+            <div class="nav-center">
+                <ul>
+                    <li><a href="index.html" data-aos="fade-down" data-aos-delay="100">Home</a></li>
+                    <li><a href="blog.html" data-aos="fade-down" data-aos-delay="200">Blog</a></li>
+                    <li><a href="vibe-check.html" data-aos="fade-down" data-aos-delay="300" class="active">Vibe Check</a></li>
+                </ul>
+            </div>
+            
+            <div class="nav-right">
+                <button class="dark-mode-toggle" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <a href="contact.html" class="contact-btn" data-aos="fade-down" data-aos-delay="400">Contact</a>
+                <button class="mobile-menu-toggle" aria-label="Toggle Mobile Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay"></div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <button class="close-menu" aria-label="Close Menu">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="index.html">Home</a>
+        <a href="blog.html">Blog</a>
+        <a href="vibe-check.html" class="active">Vibe Check</a>
+        <a href="contact.html">Contact</a>
+        <button class="dark-mode-toggle mobile" aria-label="Toggle Dark Mode">
+            <i class="fas fa-moon"></i>
+        </button>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+        <section class="vibe-section" data-aos="fade-up">
+            <div class="vibe-header">
+                <h1>Vibe Check</h1>
+                <p>Here's a glimpse into my world - the music I listen to, the videos I watch, and the things that inspire me.</p>
+            </div>
+            
+            <div class="playlist-container">
+                <div class="playlist-card">
+                    <h2>My Current Playlist</h2>
+                    <div class="playlist-embed">
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/5MBirI8pSfRodbaqhbIR56?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                </div>
+                
+                <div class="playlist-card">
+                    <h2>YouTube Favorites</h2>
+                    <div class="playlist-embed">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/videoseries?si=98y1AcNcjN-TkSwq&amp;list=PLMFLP6-j47w3AIa_SqUEPeBDdqquR4_g-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://instagram.com/himalnpne" target="_blank" data-aos="fade-up" data-aos-delay="100"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/himalnpne" target="_blank" data-aos="fade-up" data-aos-delay="200"><i class="fab fa-github"></i></a>
+            <a href="https://www.behance.net/hmlnpan" target="_blank" data-aos="fade-up" data-aos-delay="300"><i class="fab fa-behance"></i></a>
+        </div>
+        <p>&copy; 2025 Digital Insights. All rights reserved.</p>
+    </footer>
+
+    <!-- AOS Animation Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: true,
+        });
+    </script>
+
+    <!-- Particle.js Library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS.load('particles-js', 'particles.json', function() {
+            console.log('Particles.js loaded!');
+        });
+    </script>
+
+    <!-- Custom Scripts -->
+    <script>
+        // Dark Mode Toggle
+        const darkModeToggle = document.querySelector('.dark-mode-toggle');
+        const darkModeToggleMobile = document.querySelector('.dark-mode-toggle.mobile');
+        const body = document.body;
+
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            body.classList.toggle('dark-mode');
+            const isDarkMode = body.classList.contains('dark-mode');
+            
+            // Save preference
+            localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
+            
+            // Update icons
+            const icon = isDarkMode ? 'sun' : 'moon';
+            darkModeToggle.innerHTML = `<i class="fas fa-${icon}"></i>`;
+            if (darkModeToggleMobile) {
+                darkModeToggleMobile.innerHTML = `<i class="fas fa-${icon}"></i>`;
+            }
+        }
+
+        // Check for saved preference
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            if (darkModeToggleMobile) {
+                darkModeToggleMobile.innerHTML = '<i class="fas fa-sun"></i>';
+            }
+        }
+
+        // Add event listeners
+        darkModeToggle.addEventListener('click', toggleDarkMode);
+        if (darkModeToggleMobile) {
+            darkModeToggleMobile.addEventListener('click', toggleDarkMode);
+        }
+
+        // Mobile Menu Elements
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const closeMenuBtn = document.querySelector('.close-menu');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+        const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+
+        // Function to open mobile menu
+        function openMobileMenu() {
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Function to close mobile menu
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Toggle mobile menu and overlay
+        mobileMenuToggle.addEventListener('click', openMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+        closeMenuBtn.addEventListener('click', closeMobileMenu);
+
+        // Close menu when clicking any link
+        mobileMenuLinks.forEach(link => {
+            if (!link.classList.contains('dark-mode-toggle')) {
+                link.addEventListener('click', closeMobileMenu);
+            }
+        });
+
+        // Close menu when pressing Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+
+        // Scroll Indicator
+        const scrollIndicator = document.querySelector('.scroll-indicator');
+        window.addEventListener('scroll', () => {
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollTop = document.documentElement.scrollTop;
+            const scrollPercentage = (scrollTop / scrollHeight) * 100;
+            scrollIndicator.style.width = `${scrollPercentage}%`;
+        });
+    </script>
+</body>
+</html>
