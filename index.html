@@ -24,7 +24,7 @@
   <meta name="twitter:image" content="https://himalnpne.com/logo.png">
   
   <!-- Preload critical resources -->
-  <link rel="preload" href="font/static/JosefinSans-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="font/josefin-sans.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
   
   <!-- Favicon -->
@@ -48,7 +48,9 @@
     @font-face {
       font-family: 'Josefin Sans';
       font-display: swap;
-      /* ... */
+      src: url('font/josefin-sans.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
     }
   </style>
   
@@ -99,7 +101,7 @@
       font-family: 'Josefin Sans';
       font-style: normal;
       font-weight: 400;
-      src: url('font/static/JosefinSans-Regular.ttf') format('truetype');
+      src: url('font/josefin-sans.woff2') format('woff2');
     }
 
     /* Josefin Sans - Bold */
@@ -107,7 +109,7 @@
       font-family: 'Josefin Sans';
       font-style: normal;
       font-weight: 700;
-      src: url('font/static/JosefinSans-Bold.ttf') format('truetype');
+      src: url('font/josefin-sans.woff2') format('woff2');
     }
 
     /* Josefin Sans - Italic */
@@ -115,7 +117,7 @@
       font-family: 'Josefin Sans';
       font-style: italic;
       font-weight: 400;
-      src: url('font/static/JosefinSans-Italic.ttf') format('truetype');
+      src: url('font/josefin-sans.woff2') format('woff2');
     }
 
     /* Josefin Sans - Bold Italic */
@@ -123,7 +125,7 @@
       font-family: 'Josefin Sans';
       font-style: italic;
       font-weight: 700;
-      src: url('font/static/JosefinSans-BoldItalic.ttf') format('truetype');
+      src: url('font/josefin-sans.woff2') format('woff2');
     }
     
     * {
