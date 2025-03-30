@@ -11,48 +11,23 @@
   
   <!-- Open Graph / Facebook Meta Tags -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://himalnpne.com/">
+  <meta property="og:url" content="https://neupanehimal.com.np/">
   <meta property="og:title" content="HIMALNPNE | UI/UX Designer & Developer">
   <meta property="og:description" content="Himal Neupane - Creative UI/UX designer and developer specializing in digital experiences. Explore my portfolio, blog, and tech insights.">
   <meta property="og:image" content="https://himalnpne.com/logo.png">
   
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://himalnpne.com/">
+  <meta name="twitter:url" content="https://neupanehimal.com.np/">
   <meta name="twitter:title" content="HIMALNPNE | UI/UX Designer & Developer">
   <meta name="twitter:description" content="Himal Neupane - Creative UI/UX designer and developer specializing in digital experiences. Explore my portfolio, blog, and tech insights.">
-  <meta name="twitter:image" content="https://himalnpne.com/logo.png">
+  <meta name="twitter:image" content="https://neupanehimal.com.np/logo.png">
   
   <!-- Preload critical resources -->
   <link rel="preload" href="font/josefin-sans.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
   
   <!-- Favicon -->
   <link rel="icon" href="logo.png" type="image/png">
-  
-  <!-- Inline critical CSS for LCP elements -->
-  <style>
-    .home-section h1 {
-      font-size: 4rem;
-      background: linear-gradient(135deg, #2563eb, #f43f5e);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 1.5rem;
-    }
-    .home-section p {
-      font-size: 1.5rem;
-      margin-bottom: 2.5rem;
-    }
-    /* Ensure fonts are visible during load */
-    @font-face {
-      font-family: 'Josefin Sans';
-      font-display: swap;
-      src: url('font/josefin-sans.woff2') format('woff2');
-      font-weight: 400;
-      font-style: normal;
-    }
-  </style>
   
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -66,61 +41,52 @@
       --primary: #2563eb; /* Modern blue */
       --secondary: #f43f5e; /* Modern pink/red */
       --accent: #8b5cf6; /* Purple accent */
-      --accent2: #14b8a6; /* Teal accent */
-      --accent3: #f59e0b; /* Amber accent */
       --dark: #0f172a; /* Dark background */
       --light: #f8fafc; /* Light background */
       --gradient: linear-gradient(135deg, var(--primary), var(--secondary));
-      --gradient2: linear-gradient(135deg, var(--accent), var(--accent2));
-      --gradient3: linear-gradient(135deg, var(--accent3), var(--primary));
       --glass: rgba(255, 255, 255, 0.1); /* Glassmorphism effect */
       --shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
       --blur: blur(10px); /* Blur effect for glassmorphism */
       --content-max-width: 1200px;
       --section-spacing: 6rem;
-      --card-radius: 6px; /* Changed to 6px as requested */
+      --card-radius: 6px;
       --logo-dark-blue: #014b92;
       --logo-red: #c8002a;
     }
     
     body.dark-mode {
-      --light: #0f172a; /* Dark background */
-      --dark: #f8fafc; /* Light text */
-      --primary: #60a5fa; /* Light blue for dark mode */
-      --secondary: #f87171; /* Light red for dark mode */
-      --accent: #a78bfa; /* Light purple for dark mode */
-      --glass: rgba(15, 23, 42, 0.3); /* Dark glassmorphism */
-      --logo-dark-blue: #60a5fa;  /* Lighter blue for dark mode */
-      --logo-red: #f87171;        /* Lighter red for dark mode */
+      --light: #0f172a;
+      --dark: #f8fafc;
+      --primary: #60a5fa;
+      --secondary: #f87171;
+      --accent: #a78bfa;
+      --glass: rgba(15, 23, 42, 0.3);
+      --logo-dark-blue: #60a5fa;
+      --logo-red: #f87171;
       background-color: var(--light);
       color: var(--dark);
     }
 
-    /* Josefin Sans - Regular */
+    /* Josefin Sans Font */
     @font-face {
       font-family: 'Josefin Sans';
       font-style: normal;
       font-weight: 400;
       src: url('font/josefin-sans.woff2') format('woff2');
+      font-display: swap;
     }
-
-    /* Josefin Sans - Bold */
     @font-face {
       font-family: 'Josefin Sans';
       font-style: normal;
       font-weight: 700;
       src: url('font/josefin-sans.woff2') format('woff2');
     }
-
-    /* Josefin Sans - Italic */
     @font-face {
       font-family: 'Josefin Sans';
       font-style: italic;
       font-weight: 400;
       src: url('font/josefin-sans.woff2') format('woff2');
     }
-
-    /* Josefin Sans - Bold Italic */
     @font-face {
       font-family: 'Josefin Sans';
       font-style: italic;
@@ -216,12 +182,8 @@
     }
 
     @keyframes rotate-gradient {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
 
     /* Enhanced Glassmorphism effect for shapes */
@@ -275,72 +237,9 @@
     }
 
     @keyframes pulse {
-      0% {
-        transform: scale(1) rotate(0deg);
-        opacity: 0.6;
-      }
-      50% {
-        transform: scale(1.1) rotate(5deg);
-        opacity: 0.5;
-      }
-      100% {
-        transform: scale(0.9) rotate(-5deg);
-        opacity: 0.7;
-      }
-    }
-
-    /* Floating Privacy Icons with enhanced animations */
-    .privacy-icon {
-      display: none; /* Initially hidden */
-      position: absolute;
-      font-size: 1.5rem;
-      color: var(--primary);
-      animation: float 6s ease-in-out infinite;
-      opacity: 0.8;
-      transition: opacity 1s ease-in-out;
-    }
-
-    .privacy-icon.lock {
-      top: 15%;
-      left: 5%;
-      animation-duration: 8s;
-    }
-
-    .privacy-icon.shield {
-      top: 25%;
-      right: 5%;
-      animation-duration: 10s;
-    }
-
-    .privacy-icon.encryption {
-      bottom: 18%;
-      left: 20%;
-      animation-duration: 12s;
-    }
-
-    .privacy-icon.key {
-      bottom: 8%;
-      right: 15%;
-      animation-duration: 9s;
-    }
-
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0) rotate(0deg);
-        text-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      }
-      25% {
-        transform: translateY(-15px) rotate(-2deg);
-        text-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-      }
-      50% {
-        transform: translateY(-25px) rotate(0deg);
-        text-shadow: 0 25px 35px rgba(0, 0, 0, 0.1);
-      }
-      75% {
-        transform: translateY(-10px) rotate(2deg);
-        text-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-      }
+      0% { transform: scale(1) rotate(0deg); opacity: 0.6; }
+      50% { transform: scale(1.1) rotate(5deg); opacity: 0.5; }
+      100% { transform: scale(0.9) rotate(-5deg); opacity: 0.7; }
     }
 
     /* Modern Header with animation */
@@ -590,14 +489,8 @@
     }
 
     @keyframes slide-in {
-      0% {
-        transform: translateX(-20px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateX(0);
-        opacity: 1;
-      }
+      0% { transform: translateX(-20px); opacity: 0; }
+      100% { transform: translateX(0); opacity: 1; }
     }
 
     .mobile-menu a:hover {
@@ -639,18 +532,6 @@
       max-width: var(--content-max-width);
     }
 
-    /* Cursor trail effect */
-    .cursor-trail {
-      position: fixed;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: 9999;
-      transform: translate(-50%, -50%);
-      mix-blend-mode: screen;
-    }
-
     /* Home Section with enhanced animations */
     .home-section {
       text-align: center;
@@ -677,14 +558,8 @@
     }
 
     @keyframes fade-in {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     .home-section p {
@@ -713,12 +588,8 @@
     }
 
     @keyframes blink {
-      0%, 100% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0;
-      }
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
 
     /* Blog Section */
@@ -881,7 +752,7 @@
     .subscription-header h2 {
       font-size: 2rem;
       margin-bottom: 1rem;
-      background: var(--gradient3);
+      background: linear-gradient(135deg, var(--accent), var(--primary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -1196,17 +1067,13 @@
       left: 0;
       width: 100%;
       height: 1px;
-      background: var(--gradient3);
+      background: linear-gradient(135deg, var(--accent), var(--primary));
       animation: slide 3s linear infinite;
     }
 
     @keyframes slide {
-      0% {
-        transform: translateX(-100%);
-      }
-      100% {
-        transform: translateX(100%);
-      }
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
     }
 
     footer .social-links {
@@ -1296,15 +1163,9 @@
     }
 
     @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0) translateX(-50%);
-      }
-      40% {
-        transform: translateY(-15px) translateX(-50%);
-      }
-      60% {
-        transform: translateY(-7px) translateX(-50%);
-      }
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
+      40% { transform: translateY(-15px) translateX(-50%); }
+      60% { transform: translateY(-7px) translateX(-50%); }
     }
 
     /* Button hover effects */
@@ -1424,7 +1285,7 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: auto; /* Let height adjust based on width */
+  height: auto;
   z-index: -1;
   pointer-events: none;
   margin: 0;
@@ -1433,13 +1294,13 @@
   opacity: 0.08;
   transition: opacity 0.5s ease;
   display: flex;
-  justify-content: center; /* Center horizontally */
+  justify-content: center;
 }
 
 /* SVG Styling */
 .mountain-background svg {
-  width: 100vw; /* Full width */
-  height: auto; /* Maintain original aspect ratio */
+  width: 100vw;
+  height: auto;
   display: block;
   margin: 0;
   padding: 0;
@@ -1451,22 +1312,20 @@ body.dark-mode .mountain-background {
 }
 
 body.dark-mode .mountain-path {
-  fill: var(--accent2);
+  fill: var(--accent);
   opacity: 0.6;
 }
 
 /* Ensure Proper Positioning and Mobile Adjustments */
 @media (max-width: 768px) {
   .mountain-background {
-    opacity: 0.1; /* Lower opacity in light mode on mobile */
+    opacity: 0.1;
   }
   
   body.dark-mode .mountain-background {
-    opacity: 0.5; /* Keep dark mode visibility */
+    opacity: 0.5;
   }
 }
-
-
   </style>
 </head>
 <body>
@@ -1484,20 +1343,6 @@ body.dark-mode .mountain-path {
   <div class="shape shape-2"></div>
   <div class="shape shape-3"></div>
   <div class="shape shape-4"></div>
-
-  <!-- Floating Privacy Icons -->
-  <div class="privacy-icon lock">
-    <i class="fas fa-lock"></i>
-  </div>
-  <div class="privacy-icon shield">
-    <i class="fas fa-shield-alt"></i>
-  </div>
-  <div class="privacy-icon encryption">
-    <i class="fas fa-key"></i>
-  </div>
-  <div class="privacy-icon key">
-    <i class="fas fa-user-secret"></i>
-  </div>
 
   <!-- Header with dark mode toggle -->
   <header>
@@ -1571,28 +1416,28 @@ body.dark-mode .mountain-path {
   <!-- Main Content -->
   <main><br/><br/>
     <!-- Home Section with mountain background -->
-<section id="home" class="home-section" data-aos="fade-up">
- <br/> <br/><h1>Welcome to My Website</h1>
-  <p>Hi, I'm Himal Neupane. I specialize in creating exceptional digital experiences through <span class="typing-effect">UI/UX Design</span></p>
-  <a href="contact.html" class="btn">Hire Me ? </a>   <br/>   <br/>  <br/>  <br/>   <br/>  <br/>  <br/>
-  <div class="scroll-down">
-    <br/><br/><br/>
-    <span>Scroll Down</span>
-    <i class="fas fa-chevron-down"></i>
-  </div>
-  
-  <!-- Mountain Background SVG --> <br/> <br/><br/> <br/><br/><br/>
-  <div class="mountain-background">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 145.13 53.44" preserveAspectRatio="none">
-      <path class="mountain-path" d="M144.31,49.01l-5.28-.61-3.99-8.2-.14-.29-.3-.13-2.77-1.19-1.38-.59-.69-.3-.35-.15-.25-.12c-.64-.35-1.21-1.14-1.75-1.98-.55-.85-1.04-1.79-1.81-2.7l-.28-.33-.42.04c-.65.06-1.25.27-1.76.46-.29.1-.55.19-.8.25-.23-.62-.41-1.29-.58-2.01-.23-.95-.5-1.99-.96-2.97l-.37-.79-.76.39c-.39.2-.71.53-.94.81l-1.36-3.82-.6-1.68-.92,1.51-4.17,6.83-.13.21v.27c0,1.1.14,2.11.2,3.06-.7.18-1.47.3-2.27.45-.26.05-.53.11-.79.18-.13.03-.27.07-.42.12l-.39.13c-.53.2-1.04.44-1.52.72-1.62.94-2.92,2.16-4.23,3.21-.74-1.75-1.38-3.61-2.23-5.44l-.2-.43-.44-.06c-1.15-.15-2.16.01-3.04,0-.01-.13-.03-.27-.04-.42-.03-.4-.07-.89-.19-1.37l-.09-.34-.27-.19-6.6-4.63c-.68-2.12-1.48-4.14-2.11-6.17l-.24-.77-.74.17c-.98.23-1.85.57-2.68.8-1.2-1.33-2.36-2.7-3.53-4.08l-1.94-2.27-1-1.12-.49-.55-.42-.51-.38-.56-.34-.6c-.21-.41-.41-.84-.58-1.28-.35-.89-.64-1.83-.93-2.8-.29-.97-.58-1.96-.94-2.95-.18-.50-.38-.99-.61-1.47-.23-.49-.49-.96-.78-1.42l-.83-1.35-.63,1.46-3.96,9.12-2.47.24-.57.05-.15.62c-.44,1.85-.64,3.68-1.01,5.38-.72.31-1.49.57-2.3.82-.95.3-1.93.59-2.91,1.07l-.38.19-.08.42-.87,4.46-.17-.05-.57-.18c-.21-.05-.42-.12-.76-.13l-.59-.02-.2.61-2.52,7.62c-.28.16-.59.31-.95.46-.18.07-.37.16-.57.24-.05-.15-.09-.31-.14-.46-.15-.5-.28-1-.52-1.58l-.31-.74-.72.26c-.41.15-.68.31-.96.46-.03.01-.05.03-.08.04-.3-.64-.6-1.32-.97-2.01l-.29-.54-.57.1c-1.42.24-2.7.68-3.95.94-2.68-3.45-5.11-7.2-7.89-10.72l-.78-.99-.6,1.11-2.07,3.86-.26.48-.25.44c-.08.13-.17.26-.24.34-.07.1-.11.11-.12.12,0,0-.02.01-.12,0-.09,0-.23-.03-.38-.07-.3-.07-.64-.17-.98-.27l-.61-.17-.33.57-3.3,5.79c-1.43.52-2.82,1.19-4.12,2.06-1.29.86-2.46,1.92-3.48,3.12-1.14.09-2.32.08-3.54.14-.33.02-.68.04-1.01.07h-.12s-.03.01-.03.01c.1-.02-.29.02-.47.19-.05.04-.09.08-.13.13l-.04.05-.05.08s-.06.11-.08.15c-.08.22-.09.31-.12.42-.04.21-.07.39-.09.58-.09.72-.15,1.42-.22,2.11l-.19,2.06-.06.48c0,.08-.03.16-.02.14,0,0-.04.14-.06.20l-.15.46s0,.01,0,.02l-.33.19-.42.28c-.23.15-.5.29-.77.42-.56.26-1.17.50-1.81.81l-.38.18-.09.44-.68,3.12-3.29,1.07-.41.13-.11.42h0c-.21,1.63,0,3.04-.14,4.51.59-1.12.98-2.40,1.50-3.45l.14-.04,4.73,2.23-.77-4.48.57-2.64,5.91,5.53-2.38-7.52c.06-.07.11-.14.14-.21.09-.17.13-.28.17-.38l.17-.52c.03-.10.04-.12.09-.29.04-.19.05-.28.07-.38l.06-.55.19-2.09c.06-.69.12-1.38.21-2.03,0-.03.01-.06.02-.10.03,0,.07,0,.10,0l4.94,7.80.73-9.16c.79-.83,1.66-1.57,2.60-2.20,1.25-.84,2.62-1.49,4.05-1.99l.30-.10.16-.29,3.13-5.49c.08.02.16.04.25.06l1.82,6.03.27-6.27c.14-.11.26-.23.34-.33.16-.20.28-.38.39-.55.11-.17.20-.34.29-.51l.26-.48,1.10-2.04c-.25,1.82-.38,4.23-.87,4.92.39.67.88,1.33,1.26,2-.68,1.34-1.37,3.02-2.05,4.36.75,2.77,1.86,5.86,2.62,8.63.86-1.64,1.82-3.58,2.69-5.22-.32-1.98-.47-4.20-.79-6.19.77-.86,1.54-1.72,2.32-2.58.85,1.18,1.72,2.36,2.63,3.51l.11.14-2.21,3.90c2.34-1.34,4.67-2.67,7.01-4.01.23.49.47,1.01.75,1.53l.34.64.65-.23c.31-.11.55-.24.77-.36v7.40l3.82-5.86c.30-.14.61-.30.93-.52l.24-.17.09-.27,2.29-6.92,3.30,13.73,6.30,4.30-2.97-6.79,4.29,1.26-8.36-13.28.88-4.50,5.76,3.46.64-9.86c.08-.50.18-1.00.28-1.48l2.34-.22.46-.04.20-.46,3.33-7.68c-.02,3.52.08,8.66.02,11.59,1.37,1.56,2.86,3.40,4.23,4.96-.33.34-.56.90-.89,1.24.16.81.54,1.63.70,2.44,1.41,1.32,2.90,2.78,4.30,4.10,2.48-.49,6.16-.22,9-.16l6.48,4.54c.04.22.06.45.08.73.03.40.07.89.19,1.37l.15.59.56.07c1.02.13,1.93.01,2.74,0l-.11,12.31,4.15-5.94.09-.06c1.77-1.28,3.24-2.80,4.90-3.75.41-.23.84-.44,1.27-.60l.34-.11.32-.09c.23-.06.46-.11.70-.16.96-.19,2.02-.31,3.11-.70l.57-.21v-.65c0-1.26-.19-2.41-.21-3.48l3.12-5.10.02.06c-.35,3.11-.77,7.47-1.10,10.30,1.39,1.83,2.76,3.81,4.15,5.63,1.10-2.46,2.20-5.61,3.30-8.12.34-.09.66-.20.94-.30.32-.11.60-.20.87-.27-.33,2.56-1.09,5.75-.83,8.21,1.38-1.31,2.79-2.58,4.18-3.88.15.11.29.24.46.34l.43.21.35.15.69.30,1.38.59,2.11.90c-.80.93-1.61,1.86-2.41,2.79,1.67.80,3.59,1.72,5.28,2.52l1.54,3.17.20.42.45.05,5.32.62,1.15,2.66.22-3.69.04-.63-.78-.09h-.04ZM10.25,36.56h.01s-.05,0-.01,0ZM82.69,22.94l.02.02.45-.11c.87-.21,1.66-.50,2.41-.73.57,1.71,1.19,3.37,1.73,5.02-1.47-1.01-3.29-2.20-4.18-2.89-.18-.44-.30-.88-.44-1.31Z"/>
-      <path class="mountain-path" d="M86.24,37.63c-2.43-.35-8.08-3.82-10.21-4.54l-7.70,8.19,8.13-5.90c.60,1.73,1.53,3.81,1.27,4.61.83.46,1.77.86,2.60,1.31-.19,1.52-.22,3.36-.40,4.87,2.34,2.23,5.30,4.62,7.64,6.86.27-1.87.51-4.06.78-5.93-1.40-1.69-2.71-3.67-4.11-5.37.67-1.37,1.34-2.73,2.01-4.10Z"/>
-      <polygon class="mountain-path" points="32.36 47.16 38.85 40.69 42.3 53.44 42.3 46.95 44.03 48.61 45.83 44.69 37.96 38.98 32.36 47.16"/>
-      <polygon class="mountain-path" points="110.56 43.06 106.95 48.76 111.14 44.78 116.71 52.18 117.84 47.93 114.24 46.05 110.56 43.06"/>
-      <path class="mountain-path" d="M72.78,29.15l-2.97-.23-2.50-10.25,1.53,11.89s3.89-1.41,3.94-1.41Z"/>
-      <polygon class="mountain-path" points="24.8 41.41 23.32 41.41 21.95 35.34 22.37 43.21 28.22 45.1 25.86 43.44 24.8 41.41"/>
-    </svg>
-  </div>
-</section>
+    <section id="home" class="home-section" data-aos="fade-up">
+      <br/><h1><strong>Welcome to My Website</strong></h1>
+      <p>Hi, I'm Himal Neupane. I specialize in creating exceptional digital experiences through <span class="typing-effect">UI/UX Design</span></p>
+      <a href="contact.html" class="btn">Hire Me ? </a>   <br/>   <br/>  <br/>  <br/>   <br/>  <br/>  <br/>
+      <div class="scroll-down">
+        <br/><br/><br/>
+        <span>Scroll Down</span>
+        <i class="fas fa-chevron-down"></i>
+      </div>
+      
+      <!-- Mountain Background SVG --> <br/> <br/><br/> <br/><br/><br/>
+      <div class="mountain-background">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 145.13 53.44" preserveAspectRatio="none">
+          <path class="mountain-path" d="M144.31,49.01l-5.28-.61-3.99-8.2-.14-.29-.3-.13-2.77-1.19-1.38-.59-.69-.3-.35-.15-.25-.12c-.64-.35-1.21-1.14-1.75-1.98-.55-.85-1.04-1.79-1.81-2.7l-.28-.33-.42.04c-.65.06-1.25.27-1.76.46-.29.1-.55.19-.8.25-.23-.62-.41-1.29-.58-2.01-.23-.95-.5-1.99-.96-2.97l-.37-.79-.76.39c-.39.2-.71.53-.94.81l-1.36-3.82-.6-1.68-.92,1.51-4.17,6.83-.13.21v.27c0,1.1.14,2.11.2,3.06-.7.18-1.47.3-2.27.45-.26.05-.53.11-.79.18-.13.03-.27.07-.42.12l-.39.13c-.53.2-1.04.44-1.52.72-1.62.94-2.92,2.16-4.23,3.21-.74-1.75-1.38-3.61-2.23-5.44l-.2-.43-.44-.06c-1.15-.15-2.16.01-3.04,0-.01-.13-.03-.27-.04-.42-.03-.4-.07-.89-.19-1.37l-.09-.34-.27-.19-6.6-4.63c-.68-2.12-1.48-4.14-2.11-6.17l-.24-.77-.74.17c-.98.23-1.85.57-2.68.8-1.2-1.33-2.36-2.7-3.53-4.08l-1.94-2.27-1-1.12-.49-.55-.42-.51-.38-.56-.34-.6c-.21-.41-.41-.84-.58-1.28-.35-.89-.64-1.83-.93-2.8-.29-.97-.58-1.96-.94-2.95-.18-.50-.38-.99-.61-1.47-.23-.49-.49-.96-.78-1.42l-.83-1.35-.63,1.46-3.96,9.12-2.47.24-.57.05-.15.62c-.44,1.85-.64,3.68-1.01,5.38-.72.31-1.49.57-2.3.82-.95.3-1.93.59-2.91,1.07l-.38.19-.08.42-.87,4.46-.17-.05-.57-.18c-.21-.05-.42-.12-.76-.13l-.59-.02-.2.61-2.52,7.62c-.28.16-.59.31-.95.46-.18.07-.37.16-.57.24-.05-.15-.09-.31-.14-.46-.15-.5-.28-1-.52-1.58l-.31-.74-.72.26c-.41.15-.68.31-.96.46-.03.01-.05.03-.08.04-.3-.64-.6-1.32-.97-2.01l-.29-.54-.57.1c-1.42.24-2.7.68-3.95.94-2.68-3.45-5.11-7.2-7.89-10.72l-.78-.99-.6,1.11-2.07,3.86-.26.48-.25.44c-.08.13-.17.26-.24.34-.07.1-.11.11-.12.12,0,0-.02.01-.12,0-.09,0-.23-.03-.38-.07-.3-.07-.64-.17-.98-.27l-.61-.17-.33.57-3.3,5.79c-1.43.52-2.82,1.19-4.12,2.06-1.29.86-2.46,1.92-3.48,3.12-1.14.09-2.32.08-3.54.14-.33.02-.68.04-1.01.07h-.12s-.03.01-.03.01c.1-.02-.29.02-.47.19-.05.04-.09.08-.13.13l-.04.05-.05.08s-.06.11-.08.15c-.08.22-.09.31-.12.42-.04.21-.07.39-.09.58-.09.72-.15,1.42-.22,2.11l-.19,2.06-.06.48c0,.08-.03.16-.02.14,0,0-.04.14-.06.20l-.15.46s0,.01,0,.02l-.33.19-.42.28c-.23.15-.5.29-.77.42-.56.26-1.17.50-1.81.81l-.38.18-.09.44-.68,3.12-3.29,1.07-.41.13-.11.42h0c-.21,1.63,0,3.04-.14,4.51.59-1.12.98-2.40,1.50-3.45l.14-.04,4.73,2.23-.77-4.48.57-2.64,5.91,5.53-2.38-7.52c.06-.07.11-.14.14-.21.09-.17.13-.28.17-.38l.17-.52c.03-.10.04-.12.09-.29.04-.19.05-.28.07-.38l.06-.55.19-2.09c.06-.69.12-1.38.21-2.03,0-.03.01-.06.02-.10.03,0,.07,0,.10,0l4.94,7.80.73-9.16c.79-.83,1.66-1.57,2.60-2.20,1.25-.84,2.62-1.49,4.05-1.99l.30-.10.16-.29,3.13-5.49c.08.02.16.04.25.06l1.82,6.03.27-6.27c.14-.11.26-.23.34-.33.16-.20.28-.38.39-.55.11-.17.20-.34.29-.51l.26-.48,1.10-2.04c-.25,1.82-.38,4.23-.87,4.92.39.67.88,1.33,1.26,2-.68,1.34-1.37,3.02-2.05,4.36.75,2.77,1.86,5.86,2.62,8.63.86-1.64,1.82-3.58,2.69-5.22-.32-1.98-.47-4.20-.79-6.19.77-.86,1.54-1.72,2.32-2.58.85,1.18,1.72,2.36,2.63,3.51l.11.14-2.21,3.90c2.34-1.34,4.67-2.67,7.01-4.01.23.49.47,1.01.75,1.53l.34.64.65-.23c.31-.11.55-.24.77-.36v7.40l3.82-5.86c.30-.14.61-.30.93-.52l.24-.17.09-.27,2.29-6.92,3.30,13.73,6.30,4.30-2.97-6.79,4.29,1.26-8.36-13.28.88-4.50,5.76,3.46.64-9.86c.08-.50.18-1.00.28-1.48l2.34-.22.46-.04.20-.46,3.33-7.68c-.02,3.52.08,8.66.02,11.59,1.37,1.56,2.86,3.40,4.23,4.96-.33.34-.56.90-.89,1.24.16.81.54,1.63.70,2.44,1.41,1.32,2.90,2.78,4.30,4.10,2.48-.49,6.16-.22,9-.16l6.48,4.54c.04.22.06.45.08.73.03.40.07.89.19,1.37l.15.59.56.07c1.02.13,1.93.01,2.74,0l-.11,12.31,4.15-5.94.09-.06c1.77-1.28,3.24-2.80,4.90-3.75.41-.23.84-.44,1.27-.60l.34-.11.32-.09c.23-.06.46-.11.70-.16.96-.19,2.02-.31,3.11-.70l.57-.21v-.65c0-1.26-.19-2.41-.21-3.48l3.12-5.10.02.06c-.35,3.11-.77,7.47-1.10,10.30,1.39,1.83,2.76,3.81,4.15,5.63,1.10-2.46,2.20-5.61,3.30-8.12.34-.09.66-.20.94-.30.32-.11.60-.20.87-.27-.33,2.56-1.09,5.75-.83,8.21,1.38-1.31,2.79-2.58,4.18-3.88.15.11.29.24.46.34l.43.21.35.15.69.30,1.38.59,2.11.90c-.80.93-1.61,1.86-2.41,2.79,1.67.80,3.59,1.72,5.28,2.52l1.54,3.17.20.42.45.05,5.32.62,1.15,2.66.22-3.69.04-.63-.78-.09h-.04ZM10.25,36.56h.01s-.05,0-.01,0ZM82.69,22.94l.02.02.45-.11c.87-.21,1.66-.50,2.41-.73.57,1.71,1.19,3.37,1.73,5.02-1.47-1.01-3.29-2.20-4.18-2.89-.18-.44-.30-.88-.44-1.31Z"/>
+          <path class="mountain-path" d="M86.24,37.63c-2.43-.35-8.08-3.82-10.21-4.54l-7.70,8.19,8.13-5.90c.60,1.73,1.53,3.81,1.27,4.61.83.46,1.77.86,2.60,1.31-.19,1.52-.22,3.36-.40,4.87,2.34,2.23,5.30,4.62,7.64,6.86.27-1.87.51-4.06.78-5.93-1.40-1.69-2.71-3.67-4.11-5.37.67-1.37,1.34-2.73,2.01-4.10Z"/>
+          <polygon class="mountain-path" points="32.36 47.16 38.85 40.69 42.3 53.44 42.3 46.95 44.03 48.61 45.83 44.69 37.96 38.98 32.36 47.16"/>
+          <polygon class="mountain-path" points="110.56 43.06 106.95 48.76 111.14 44.78 116.71 52.18 117.84 47.93 114.24 46.05 110.56 43.06"/>
+          <path class="mountain-path" d="M72.78,29.15l-2.97-.23-2.50-10.25,1.53,11.89s3.89-1.41,3.94-1.41Z"/>
+          <polygon class="mountain-path" points="24.8 41.41 23.32 41.41 21.95 35.34 22.37 43.21 28.22 45.1 25.86 43.44 24.8 41.41"/>
+        </svg>
+      </div>
+    </section>
 
     <!-- Blog Section -->
     <section id="blog" class="blog-section" data-aos="fade-up" data-aos-delay="200">
@@ -1748,183 +1593,145 @@ body.dark-mode .mountain-path {
 
   <!-- AOS Animation Library -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-  <script>
-    AOS.init({
-      duration: 1000,
-      easing: 'ease-in-out',
-      once: true,
-    });
-  </script>
-
   <!-- Particle.js Library -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  
+  <!-- Combined Custom Scripts -->
   <script>
-    particlesJS.load('particles-js', 'particles.json', function() {
-      console.log('Particles.js loaded!');
-    });
-  </script>
-
-  <!-- Custom Scripts -->
-  <script>
-    // Show floating privacy icons after 3 seconds
     document.addEventListener('DOMContentLoaded', function() {
-      setTimeout(function() {
-        const privacyIcons = document.querySelectorAll('.privacy-icon');
-        privacyIcons.forEach(icon => {
-          icon.style.display = 'block';
-          
-          // Optional: Add a fade-in effect
-          icon.style.opacity = '0';
-          icon.style.transition = 'opacity 1s ease-in-out';
-          
-          // Trigger reflow to enable transition
-          void icon.offsetWidth;
-          
-          icon.style.opacity = '0.8';
-        });
-      }, 3000); // 3000ms = 3 seconds
-    });
-
-    // Dark Mode Toggle
-    const darkModeToggle = document.querySelector('.dark-mode-toggle');
-    const darkModeToggleMobile = document.querySelector('.dark-mode-toggle.mobile');
-    const body = document.body;
-
-    // Function to toggle dark mode
-    function toggleDarkMode() {
-      body.classList.toggle('dark-mode');
-      const isDarkMode = body.classList.contains('dark-mode');
-      
-      // Save preference
-      localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
-      
-      // Update icons
-      const icon = isDarkMode ? 'sun' : 'moon';
-      darkModeToggle.innerHTML = `<i class="fas fa-${icon}"></i>`;
-      if (darkModeToggleMobile) {
-        darkModeToggleMobile.innerHTML = `<i class="fas fa-${icon}"></i>`;
-      }
-    }
-
-    // Check for saved preference
-    if (localStorage.getItem('darkMode') === 'enabled') {
-      body.classList.add('dark-mode');
-      darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-      if (darkModeToggleMobile) {
-        darkModeToggleMobile.innerHTML = '<i class="fas fa-sun"></i>';
-      }
-    }
-
-    // Add event listeners
-    darkModeToggle.addEventListener('click', toggleDarkMode);
-    if (darkModeToggleMobile) {
-      darkModeToggleMobile.addEventListener('click', toggleDarkMode);
-    }
-
-    // Mobile Menu Elements
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const closeMenuBtn = document.querySelector('.close-menu');
-    const mobileMenu = document.querySelector('.mobile-menu');
-    const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
-    const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
-
-    // Function to open mobile menu
-    function openMobileMenu() {
-      mobileMenu.classList.add('active');
-      mobileMenuOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    // Function to close mobile menu
-    function closeMobileMenu() {
-      mobileMenu.classList.remove('active');
-      mobileMenuOverlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    // Toggle mobile menu and overlay
-    mobileMenuToggle.addEventListener('click', openMobileMenu);
-    mobileMenuOverlay.addEventListener('click', closeMobileMenu);
-    closeMenuBtn.addEventListener('click', closeMobileMenu);
-
-    // Close menu when clicking any link
-    mobileMenuLinks.forEach(link => {
-      if (!link.classList.contains('dark-mode-toggle')) {
-        link.addEventListener('click', closeMobileMenu);
-      }
-    });
-
-    // Close menu when pressing Escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
-        closeMobileMenu();
-      }
-    });
-
-    // Scroll Indicator
-    const scrollIndicator = document.querySelector('.scroll-indicator');
-    window.addEventListener('scroll', () => {
-      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollTop = document.documentElement.scrollTop;
-      const scrollPercentage = (scrollTop / scrollHeight) * 100;
-      scrollIndicator.style.width = `${scrollPercentage}%`;
-    });
-
-    // Cursor Trail Effect
-    const cursorTrail = document.createElement('div');
-    cursorTrail.classList.add('cursor-trail');
-    document.body.appendChild(cursorTrail);
-
-    document.addEventListener('mousemove', (e) => {
-      cursorTrail.style.left = `${e.pageX}px`;
-      cursorTrail.style.top = `${e.pageY}px`;
-      cursorTrail.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 50%)`;
-    });
-
-    // Scroll Down Animation
-    const scrollDown = document.querySelector('.scroll-down');
-    scrollDown.addEventListener('click', () => {
-      window.scrollBy({
-        top: window.innerHeight,
-        behavior: 'smooth',
+      // Initialize AOS animations
+      AOS.init({
+        duration: 1000,
+        easing: 'ease-in-out',
+        once: true,
       });
-    });
 
-    // Typing Effect
-    const typingText = document.querySelector('.typing-effect');
-    const professions = ['UI/UX Design', 'Web Development', 'Digital Strategy', 'Creative Solutions'];
-    let currentProfession = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let isEnd = false;
+      // Initialize particles.js
+      particlesJS.load('particles-js', 'particles.json', function() {
+        console.log('Particles.js loaded!');
+      });
 
-    function type() {
-      const currentText = professions[currentProfession];
-      
-      if (isDeleting) {
-        typingText.textContent = currentText.substring(0, charIndex - 1);
-        charIndex--;
-      } else {
-        typingText.textContent = currentText.substring(0, charIndex + 1);
-        charIndex++;
+      // Dark Mode Toggle
+      function toggleDarkMode() {
+        const body = document.body;
+        body.classList.toggle('dark-mode');
+        const isDarkMode = body.classList.contains('dark-mode');
+        
+        // Save preference
+        localStorage.setItem('darkMode', isDarkMode ? 'enabled' : 'disabled');
+        
+        // Update icons
+        const icon = isDarkMode ? 'sun' : 'moon';
+        document.querySelectorAll('.dark-mode-toggle').forEach(toggle => {
+          toggle.innerHTML = `<i class="fas fa-${icon}"></i>`;
+        });
       }
 
-      if (!isDeleting && charIndex === currentText.length) {
-        isEnd = true;
-        isDeleting = true;
-        setTimeout(type, 2000);
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        currentProfession = (currentProfession + 1) % professions.length;
-        setTimeout(type, 500);
-      } else {
-        const typingSpeed = isDeleting ? 100 : 150;
-        setTimeout(type, typingSpeed);
+      // Check for saved dark mode preference
+      if (localStorage.getItem('darkMode') === 'enabled') {
+        document.body.classList.add('dark-mode');
+        document.querySelectorAll('.dark-mode-toggle').forEach(toggle => {
+          toggle.innerHTML = '<i class="fas fa-sun"></i>';
+        });
       }
-    }
 
-    // Testimonial expansion functionality
-    document.addEventListener('DOMContentLoaded', function() {
+      // Add event listeners to all dark mode toggles
+      document.querySelectorAll('.dark-mode-toggle').forEach(toggle => {
+        toggle.addEventListener('click', toggleDarkMode);
+      });
+
+      // Mobile Menu Functionality
+      const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+      const closeMenuBtn = document.querySelector('.close-menu');
+      const mobileMenu = document.querySelector('.mobile-menu');
+      const mobileMenuLinks = document.querySelectorAll('.mobile-menu a');
+      const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+
+      function openMobileMenu() {
+        mobileMenu.classList.add('active');
+        mobileMenuOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMobileMenu() {
+        mobileMenu.classList.remove('active');
+        mobileMenuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      mobileMenuToggle.addEventListener('click', openMobileMenu);
+      mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+      closeMenuBtn.addEventListener('click', closeMobileMenu);
+
+      // Close menu when clicking any link
+      mobileMenuLinks.forEach(link => {
+        if (!link.classList.contains('dark-mode-toggle')) {
+          link.addEventListener('click', closeMobileMenu);
+        }
+      });
+
+      // Close menu when pressing Escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+          closeMobileMenu();
+        }
+      });
+
+      // Scroll Indicator
+      const scrollIndicator = document.querySelector('.scroll-indicator');
+      window.addEventListener('scroll', () => {
+        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollTop = document.documentElement.scrollTop;
+        const scrollPercentage = (scrollTop / scrollHeight) * 100;
+        scrollIndicator.style.width = `${scrollPercentage}%`;
+      });
+
+      // Scroll Down Animation
+      const scrollDown = document.querySelector('.scroll-down');
+      scrollDown.addEventListener('click', () => {
+        window.scrollBy({
+          top: window.innerHeight,
+          behavior: 'smooth',
+        });
+      });
+
+      // Typing Effect
+      const typingText = document.querySelector('.typing-effect');
+      const professions = ['UI/UX Design', 'Web Development', 'Digital Strategy', 'Creative Solutions'];
+      let currentProfession = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      let isEnd = false;
+
+      function type() {
+        const currentText = professions[currentProfession];
+        
+        if (isDeleting) {
+          typingText.textContent = currentText.substring(0, charIndex - 1);
+          charIndex--;
+        } else {
+          typingText.textContent = currentText.substring(0, charIndex + 1);
+          charIndex++;
+        }
+
+        if (!isDeleting && charIndex === currentText.length) {
+          isEnd = true;
+          isDeleting = true;
+          setTimeout(type, 2000);
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          currentProfession = (currentProfession + 1) % professions.length;
+          setTimeout(type, 500);
+        } else {
+          const typingSpeed = isDeleting ? 100 : 150;
+          setTimeout(type, typingSpeed);
+        }
+      }
+
+      // Start typing effect
+      type();
+
+      // Testimonial expansion functionality
       const seeMoreButtons = document.querySelectorAll('.see-more-btn');
       
       seeMoreButtons.forEach(button => {
@@ -1943,151 +1750,13 @@ body.dark-mode .mountain-path {
 
       // Auto-hide "See More" for short testimonials
       document.querySelectorAll('.testimonial-content').forEach(content => {
-        if (content.scrollHeight <= 150) { // If content is shorter than max-height
+        if (content.scrollHeight <= 150) {
           content.nextElementSibling.style.display = 'none';
           content.style.maxHeight = 'none';
         }
       });
-    });
 
-    // Load and render blog posts
-    document.addEventListener('DOMContentLoaded', function() {
-      const postFiles = ['post1.json', 'post2.json', 'post3.json'];
-      
-      Promise.all(postFiles.map(file => 
-        fetch(`post/${file}`)
-          .then(response => {
-            if (!response.ok) throw new Error(`Failed to load ${file}`);
-            return response.json();
-          })
-          .then(post => {
-            post.filename = file.replace('.json', '');
-            return post;
-          })
-          .catch(error => {
-            console.error(`Error loading ${file}:`, error);
-            return null;
-          })
-      ))
-      .then(posts => {
-        const validPosts = posts.filter(post => post !== null);
-        validPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
-        renderPosts(validPosts.slice(0, 3)); // Only show latest 3 posts
-      })
-      .catch(error => {
-        const container = document.getElementById('posts-container');
-        container.innerHTML = `
-          <div class="error">
-            <p>Failed to load posts:</p>
-            <p>${error.message}</p>
-          </div>
-        `;
-        console.error('Error loading posts:', error);
-      });
-    });
-
-    function renderPosts(posts) {
-      const container = document.getElementById('posts-container');
-      
-      if (posts.length === 0) {
-        container.innerHTML = '<div class="error">No posts found.</div>';
-        return;
-      }
-      
-      let postsHTML = '';
-      
-      posts.forEach(post => {
-        const date = post.date ? new Date(post.date).toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'long',
-          day: 'numeric'
-        }) : '';
-        
-        const excerpt = post.content 
-          ? post.content.replace(/<[^>]*>/g, '').substring(0, 120) + '...'
-          : 'No content available';
-        
-        let tagsHTML = '';
-        if (post.tags && post.tags.length > 0) {
-          tagsHTML = `
-            <div class="tags">
-              ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-            </div>
-          `;
-        }
-        
-        const imageHTML = post.image 
-          ? `<img src="post/${post.image}" alt="${post.title}" class="post-image">`
-          : `<div class="post-image" style="background: linear-gradient(135deg, var(--primary), var(--secondary));"></div>`;
-        
-        postsHTML += `
-          <a href="post-read.html?id=${post.filename}" class="post-link">
-            <div class="post-card">
-              ${imageHTML}
-              <div class="post-content">
-                <h2 class="post-title">${post.title || 'Untitled Post'}</h2>
-                <div class="post-meta">
-                  <span>By ${post.author || 'Unknown'}</span>
-                  <span>${date}</span>
-                </div>
-                <p class="post-excerpt">${excerpt}</p>
-                ${tagsHTML}
-              </div>
-            </div>
-          </a>
-        `;
-      });
-      
-      container.innerHTML = postsHTML;
-    }
-
-    // Handle Subscription Form
-    document.getElementById('subscriptionForm').addEventListener('submit', function(e) {
-      e.preventDefault(); // Prevent the default form submission
-
-      const form = e.target;
-      const emailInput = document.getElementById('email');
-      const successMessage = document.getElementById('successMessage');
-      const errorMessage = document.getElementById('errorMessage');
-
-      // Reset previous messages
-      successMessage.style.display = 'none';
-      errorMessage.style.display = 'none';
-
-      // Validate email (you can add more robust validation if needed)
-      if (!emailInput.checkValidity()) {
-        emailInput.reportValidity();
-        return;
-      }
-
-      // Prepare form data
-      const formData = new FormData();
-      formData.append('emailAddress', emailInput.value);
-      formData.append('fvv', '1');
-      formData.append('partialResponse', '[null,null,"8451942554320962319"]');
-      formData.append('pageHistory', '0');
-      formData.append('fbzx', '5057574322375540524');
-
-      // Send form data using Fetch API
-      fetch('https://docs.google.com/forms/u/0/d/e/1FAIpQLSfhMCTSn5w5E2O091mmWmGVy4UTXOEfje3Rp3wf7GAinKNSlg/formResponse', {
-        method: 'POST',
-        mode: 'no-cors', // Important for cross-origin requests
-        body: formData
-      })
-      .then(response => {
-        // Show success message
-        successMessage.style.display = 'flex';
-        // Don't clear the input as requested
-      })
-      .catch(error => {
-        // Show error message
-        errorMessage.style.display = 'flex';
-        console.error('Error:', error);
-      });
-    });
-
-    // Initialize carousel navigation
-    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize carousel navigation
       const carousel = document.getElementById('testimonialsCarousel');
       const carouselNav = document.getElementById('carouselNav');
       const cards = document.querySelectorAll('.testimonial-card');
@@ -2146,11 +1815,139 @@ body.dark-mode .mountain-path {
       cards.forEach(card => {
         card.style.flex = isMobile ? '0 0 calc(100% - 2rem)' : '0 0 calc(33.333% - 1.333rem)';
       });
-    });
 
-    // Start typing effect when DOM is loaded
-    document.addEventListener('DOMContentLoaded', function() {
-      type();
+      // Load and render blog posts
+      const postFiles = ['post1.json', 'post2.json', 'post3.json'];
+      
+      Promise.all(postFiles.map(file => 
+        fetch(`post/${file}`)
+          .then(response => {
+            if (!response.ok) throw new Error(`Failed to load ${file}`);
+            return response.json();
+          })
+          .then(post => {
+            post.filename = file.replace('.json', '');
+            return post;
+          })
+          .catch(error => {
+            console.error(`Error loading ${file}:`, error);
+            return null;
+          })
+      ))
+      .then(posts => {
+        const validPosts = posts.filter(post => post !== null);
+        validPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+        renderPosts(validPosts.slice(0, 3)); // Only show latest 3 posts
+      })
+      .catch(error => {
+        const container = document.getElementById('posts-container');
+        container.innerHTML = `
+          <div class="error">
+            <p>Failed to load posts:</p>
+            <p>${error.message}</p>
+          </div>
+        `;
+        console.error('Error loading posts:', error);
+      });
+
+      function renderPosts(posts) {
+        const container = document.getElementById('posts-container');
+        
+        if (posts.length === 0) {
+          container.innerHTML = '<div class="error">No posts found.</div>';
+          return;
+        }
+        
+        let postsHTML = '';
+        
+        posts.forEach(post => {
+          const date = post.date ? new Date(post.date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          }) : '';
+          
+          const excerpt = post.content 
+            ? post.content.replace(/<[^>]*>/g, '').substring(0, 120) + '...'
+            : 'No content available';
+          
+          let tagsHTML = '';
+          if (post.tags && post.tags.length > 0) {
+            tagsHTML = `
+              <div class="tags">
+                ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+              </div>
+            `;
+          }
+          
+          const imageHTML = post.image 
+            ? `<img src="post/${post.image}" alt="${post.title}" class="post-image">`
+            : `<div class="post-image" style="background: linear-gradient(135deg, var(--primary), var(--secondary));"></div>`;
+          
+          postsHTML += `
+            <a href="post-read.html?id=${post.filename}" class="post-link">
+              <div class="post-card">
+                ${imageHTML}
+                <div class="post-content">
+                  <h2 class="post-title">${post.title || 'Untitled Post'}</h2>
+                  <div class="post-meta">
+                    <span>By ${post.author || 'Unknown'}</span>
+                    <span>${date}</span>
+                  </div>
+                  <p class="post-excerpt">${excerpt}</p>
+                  ${tagsHTML}
+                </div>
+              </div>
+            </a>
+          `;
+        });
+        
+        container.innerHTML = postsHTML;
+      }
+
+      // Handle Subscription Form
+      document.getElementById('subscriptionForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent the default form submission
+
+        const form = e.target;
+        const emailInput = document.getElementById('email');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Reset previous messages
+        successMessage.style.display = 'none';
+        errorMessage.style.display = 'none';
+
+        // Validate email (you can add more robust validation if needed)
+        if (!emailInput.checkValidity()) {
+          emailInput.reportValidity();
+          return;
+        }
+
+        // Prepare form data
+        const formData = new FormData();
+        formData.append('emailAddress', emailInput.value);
+        formData.append('fvv', '1');
+        formData.append('partialResponse', '[null,null,"8451942554320962319"]');
+        formData.append('pageHistory', '0');
+        formData.append('fbzx', '5057574322375540524');
+
+        // Send form data using Fetch API
+        fetch('https://docs.google.com/forms/u/0/d/e/1FAIpQLSfhMCTSn5w5E2O091mmWmGVy4UTXOEfje3Rp3wf7GAinKNSlg/formResponse', {
+          method: 'POST',
+          mode: 'no-cors', // Important for cross-origin requests
+          body: formData
+        })
+        .then(response => {
+          // Show success message
+          successMessage.style.display = 'flex';
+        })
+        .catch(error => {
+          // Show error message
+          errorMessage.style.display = 'flex';
+          console.error('Error:', error);
+        });
+      });
     });
   </script>
 </body>
