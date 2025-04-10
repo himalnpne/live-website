@@ -1318,13 +1318,3 @@ body.dark-mode .mountain-path {
     opacity: 0.5;
   }
 }
-
-#intro-text {
-  opacity: 0;
-  transition: opacity 0.5s ease;
-}
-
-#intro-text.visible {
-  display: block;
-  opacity: 1;
-}
