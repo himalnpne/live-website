@@ -38,6 +38,18 @@
   <!-- CSS File -->
   <link rel="stylesheet" href="index.css">
 </head>
+  <script>
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const intro = document.getElementById('intro-text');
+      if (intro) {
+        intro.style.display = 'block';
+        intro.classList.add('visible');
+      }
+    }, 2000);
+  });
+</script>
+
 <body>
   <!-- Scroll Indicator -->
   <div class="scroll-indicator"></div>
