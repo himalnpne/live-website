@@ -1241,50 +1241,55 @@
           grid-template-columns: repeat(3, 1fr);
         }
       }
-  /* Mountain Background - Responsive Adjustments */
+/* Mountain Background - Responsive Adjustments */
+.mountain-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: calc(100% - var(--page-margin, 0px) * 2); /* Adjust for margins */
+  height: auto;
+  z-index: -1;
+  pointer-events: none;
+  margin: 0 auto; /* Center the element */
+  padding: 0;
+  overflow: hidden;
+  opacity: 0.15;
+  transition: opacity 0.5s ease;
+  display: flex;
+  justify-content: center;
+  max-width: 100%; /* Ensure it doesn't exceed viewport */
+}
+
+/* SVG Styling */
+.mountain-background svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
+  padding: 0;
+  max-width: 100%; /* Prevent SVG from overflowing */
+}
+
+/* Dark Mode */
+body.dark-mode .mountain-background {
+  opacity: 0.5;
+}
+
+body.dark-mode .mountain-path {
+  fill: var(--accent);
+  opacity: 0.6;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
   .mountain-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: auto;
-    z-index: -1;
-    pointer-events: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    opacity: 0.08;
-    transition: opacity 0.5s ease;
-    display: flex;
-    justify-content: center;
+    opacity: 0.2;
+    width: calc(100% - var(--mobile-page-margin, 16px) * 2); /* Adjust for smaller margins on mobile */
   }
   
-  /* SVG Styling */
-  .mountain-background svg {
-    width: 100vw;
-    height: auto;
-    display: block;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Dark Mode - Slightly More Visible */
   body.dark-mode .mountain-background {
     opacity: 0.5;
   }
-  
-  body.dark-mode .mountain-path {
-    fill: var(--accent);
-    opacity: 0.6;
-  }
-  
-  /* Ensure Proper Positioning and Mobile Adjustments */
-  @media (max-width: 768px) {
-    .mountain-background {
-      opacity: 0.1;
-    }
-    
-    body.dark-mode .mountain-background {
-      opacity: 0.5;
-    }
-  }
+}
