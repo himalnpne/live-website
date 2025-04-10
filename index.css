@@ -41,19 +41,19 @@
         font-family: 'Josefin Sans';
         font-style: normal;
         font-weight: 700;
-        src: url('font/josefin-sans.woff2') format('woff2');
+        src: url('font/josefinsans-semibold-webfont.woff2') format('woff2');
       }
       @font-face {
         font-family: 'Josefin Sans';
         font-style: italic;
         font-weight: 400;
-        src: url('font/josefin-sans.woff2') format('woff2');
+        src: url('font/josefinsans-semibold-webfont.woff2') format('woff2');
       }
       @font-face {
         font-family: 'Josefin Sans';
         font-style: italic;
         font-weight: 700;
-        src: url('font/josefin-sans.woff2') format('woff2');
+        src: url('font/jjosefinsans-semibold-webfont.woff2') format('woff2');
       }
       
       * {
