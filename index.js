@@ -349,3 +349,12 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
   });
+
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const intro = document.getElementById('intro-text');
+      if (intro) {
+        intro.style.display = 'block';
+        setTimeout(() => intro.classList.add('visible'), 50);
+      }
+    }, 2000);
