@@ -105,6 +105,25 @@
           <img src="menu-white.svg" alt="Menu Icon" class="menu-icon menu-icon--dark" style="width: 40px; height: 40px;">
       </button>
       <style>
+          /* Hide the menu toggle by default on desktop */
+          .mobile-menu-toggle {
+              display: none;  /* Hidden by default */
+              align-items: center;
+              justify-content: center;
+              padding: 8px;
+              background: none;
+              border: none;
+              cursor: pointer;
+          }
+          
+          /* Display only on mobile devices */
+          @media (max-width: 768px) {
+              .mobile-menu-toggle {
+                  display: flex;  /* Show on mobile */
+              }
+          }
+          
+          /* Menu icon display logic - CORRECTED */
           .menu-icon {
               display: none;
           }
@@ -116,16 +135,6 @@
           }
           body.dark .menu-icon--dark {
               display: block;
-          }
-          /* Ensure button layout remains stable */
-          .mobile-menu-toggle {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              padding: 8px;
-              background: none;
-              border: none;
-              cursor: pointer;
           }
       </style>
       <script>

@@ -1014,9 +1014,13 @@ footer p {
   width: 100%;
   height: 100%;
   z-index: -1;
-  display: flex;
+  display: none; /* Hidden by default */
   justify-content: center;
   align-items: flex-end;
+}
+
+body.dark-mode .mountain-background {
+  display: flex; /* Visible only in dark mode */
 }
 
 .mountain-background svg {
