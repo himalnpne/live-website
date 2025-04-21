@@ -1159,3 +1159,55 @@ body.dark-mode .mountain-background::before {
     flex: 0 0 calc(33.333% - 1.333rem);
   }
 }
+/* Skill Buttons */
+.skill-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.skill-btn {
+  background: var(--glass);
+  backdrop-filter: var(--blur);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--dark);
+  padding: 0.6rem 1.2rem;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.9rem;
+}
+
+.skill-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.skill-btn.active {
+  background: var(--gradient);
+  color: white;
+  border-color: transparent;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .skill-btn {
+  color: var(--dark);
+}
+
+body.dark-mode .skill-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .skill-buttons {
+    gap: 0.6rem;
+  }
+  
+  .skill-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}

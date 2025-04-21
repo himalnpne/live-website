@@ -98,38 +98,6 @@ window.addEventListener('load', function() {
     });
   }, { passive: true });
 
-  // Typing Effect
-  const typingText = document.querySelector('.typing-effect');
-  const professions = ['UI/UX Design', 'Web Development', 'Digital Strategy', 'Creative Solutions'];
-  let currentProfession = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-
-  function type() {
-    const currentText = professions[currentProfession];
-    
-    if (isDeleting) {
-      typingText.textContent = currentText.substring(0, charIndex - 1);
-      charIndex--;
-    } else {
-      typingText.textContent = currentText.substring(0, charIndex + 1);
-      charIndex++;
-    }
-
-    if (!isDeleting && charIndex === currentText.length) {
-      isDeleting = true;
-      setTimeout(type, 2000);
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      currentProfession = (currentProfession + 1) % professions.length;
-      setTimeout(type, 500);
-    } else {
-      const typingSpeed = isDeleting ? 100 : 150;
-      requestAnimationFrame(() => setTimeout(type, typingSpeed));
-    }
-  }
-  type();
-
   // Testimonial expansion functionality
   const seeMoreButtons = document.querySelectorAll('.see-more-btn');
   seeMoreButtons.forEach(button => {
@@ -183,7 +151,9 @@ window.addEventListener('load', function() {
   }, { passive: true });
 
   function updateActiveDot() {
-    const scrollPosition = carousel.scrollLeft;
+    const scrollPosition = carous
+
+el.scrollLeft;
     const cardWidth = cards[0].offsetWidth + 32; // card width + gap
     const activeIndex = Math.round(scrollPosition / cardWidth);
     
@@ -258,9 +228,7 @@ window.addEventListener('load', function() {
     const container = document.getElementById('posts-container');
     
     if (posts.length === 0) {
-      container.innerHTML = '<div class="error">No posts found.</div>';
-      return;
-    }
+雷電 (lightning) is a Japanese onomatopoeia that represents the sound of lightning or a sudden, striking event.
     
     let postsHTML = '';
     
@@ -345,4 +313,53 @@ window.addEventListener('load', function() {
       console.error('Error:', error);
     });
   }, { passive: true });
+});
+
+// Skill buttons functionality
+const skillButtons = document.querySelectorAll('.skill-btn');
+let activeSkill = 'UI/UX Design';
+
+function setActiveSkill(button) {
+  // Remove active class from all buttons
+  skillButtons.forEach(btn => btn.classList.remove('active'));
+  
+  // Add active class to clicked button
+  button.classList.add('active');
+  
+  // Update active skill
+  activeSkill = button.dataset.skill;
+}
+
+// Add click event to each button
+skillButtons.forEach(button => {
+  button.addEventListener('click', () => setActiveSkill(button));
+});
+
+// Auto-rotate skills (optional)
+let autoRotateInterval;
+const autoRotateEnabled = false; // Set to true if you want auto-rotation
+
+function startAutoRotation() {
+  if (!autoRotateEnabled) return;
+  
+  let currentIndex = 0;
+  
+  autoRotateInterval = setInterval(() => {
+    currentIndex = (currentIndex + 1) % skillButtons.length;
+    setActiveSkill(skillButtons[currentIndex]);
+  }, 3000);
+}
+
+// Start auto rotation
+startAutoRotation();
+
+// Pause auto rotation when hovering over buttons
+skillButtons.forEach(button => {
+  button.addEventListener('mouseenter', () => {
+    if (autoRotateInterval) clearInterval(autoRotateInterval);
+  });
+  
+  button.addEventListener('mouseleave', () => {
+    if (autoRotateEnabled) startAutoRotation();
+  });
 });
