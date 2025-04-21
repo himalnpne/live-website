@@ -101,8 +101,50 @@
         </button>
         <a href="contact.html" class="contact-btn" data-aos="fade-down" data-aos-delay="400">Contact</a>
         <button class="mobile-menu-toggle" aria-label="Toggle Mobile Menu">
-          <i class="fas fa-bars"></i>
-        </button>
+          <img src="menu-black.svg" alt="Menu Icon" class="menu-icon menu-icon--light" style="width: 40px; height: 40px;">
+          <img src="menu-white.svg" alt="Menu Icon" class="menu-icon menu-icon--dark" style="width: 40px; height: 40px;">
+      </button>
+      <style>
+          .menu-icon {
+              display: none;
+          }
+          .menu-icon--light {
+              display: block;
+          }
+          body.dark .menu-icon--light {
+              display: none;
+          }
+          body.dark .menu-icon--dark {
+              display: block;
+          }
+          /* Ensure button layout remains stable */
+          .mobile-menu-toggle {
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              padding: 8px;
+              background: none;
+              border: none;
+              cursor: pointer;
+          }
+      </style>
+      <script>
+      // Optional: Debug theme switching (remove if already handled)
+      document.addEventListener('DOMContentLoaded', () => {
+          // Example: Toggle .dark class on button click (replace with your actual toggle logic)
+          const toggleButton = document.querySelector('.dark-mode-toggle'); // Adjust selector if needed
+          if (toggleButton) {
+              toggleButton.addEventListener('click', () => {
+                  document.body.classList.toggle('dark');
+              });
+          }
+          // Debug: Log if SVGs are loaded
+          const lightIcon = document.querySelector('.menu-icon--light');
+          const darkIcon = document.querySelector('.menu-icon--dark');
+          if (!lightIcon.complete) console.error('menu-black.svg failed to load');
+          if (!darkIcon.complete) console.error('menu-white.svg failed to load');
+      });
+      </script>
       </div>
     </nav>
   </header>
