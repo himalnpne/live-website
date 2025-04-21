@@ -214,48 +214,107 @@ window.addEventListener('load', function() {
     card.style.flex = isMobile ? '0 0 calc(100% - 2rem)' : '0 0 calc(33.333% - 1.333rem)';
   });
 
-  // Lazy-load blog posts
+  // Updated Lazy-load blog posts
   const postsContainer = document.getElementById('posts-container');
-  const postFiles = ['post1.json', 'post2.json', 'post3.json'];
   
-  const observer = new IntersectionObserver((entries) => {
-    if (entries[0].isIntersecting) {
-      Promise.all(postFiles.map(file => 
-        fetch(`post/${file}`)
-          .then(response => {
-            if (!response.ok) throw new Error(`Failed to load ${file}`);
-            return response.json();
-          })
-          .then(post => {
-            post.filename = file.replace('.json', '');
-            return post;
-          })
-          .catch(error => {
-            console.error(`Error loading ${file}:`, error);
-            return null;
-          })
-      ))
-      .then(posts => {
-        const validPosts = posts.filter(post => post !== null);
-        validPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
-        renderPosts(validPosts.slice(0, 3));
-      })
-      .catch(error => {
-        postsContainer.innerHTML = `
-          <div class="error">
-            <p>Failed to load posts:</p>
-            <p>${error.message}</p>
-          </div>
-        `;
-        console.error('Error loading posts:', error);
-      });
-      observer.disconnect();
+  // Only proceed if posts container exists on the page
+  if (postsContainer) {
+    console.log('Posts container found, initializing post loading');
+    // Add a loading indicator
+    postsContainer.innerHTML = '<div class="loading">Loading posts...</div>';
+    
+    const postFiles = ['post1.json', 'post2.json', 'post3.json'];
+    
+    // Try different possible paths for the JSON files
+    const possiblePaths = [
+      './post/',
+      '../post/',
+      './assets/post/',
+      './data/post/',
+      './',
+      '/post/'
+    ];
+    
+    // Function to attempt loading posts from multiple possible paths
+    function loadPosts() {
+      let currentPathIndex = 0;
+      
+      function tryPath() {
+        if (currentPathIndex >= possiblePaths.length) {
+          console.error('Failed to load posts from any path');
+          postsContainer.innerHTML = `
+            <div class="error">
+              <p>Failed to load posts:</p>
+              <p>Could not find post files in any known location</p>
+            </div>
+          `;
+          return;
+        }
+        
+        const currentPath = possiblePaths[currentPathIndex];
+        console.log(`Trying to load posts from: ${currentPath}`);
+        
+        Promise.all(postFiles.map(file => 
+          fetch(`${currentPath}${file}`)
+            .then(response => {
+              if (!response.ok) throw new Error(`Failed to load ${file}`);
+              return response.json();
+            })
+            .then(post => {
+              post.filename = file.replace('.json', '');
+              return post;
+            })
+            .catch(error => {
+              console.error(`Error loading ${file} from ${currentPath}:`, error);
+              return null;
+            })
+        ))
+        .then(posts => {
+          const validPosts = posts.filter(post => post !== null);
+          
+          if (validPosts.length > 0) {
+            console.log(`Successfully loaded ${validPosts.length} posts from ${currentPath}`);
+            validPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+            renderPosts(validPosts.slice(0, 3)); // Only show latest 3 posts
+          } else {
+            console.log(`No valid posts found at ${currentPath}, trying next path`);
+            currentPathIndex++;
+            tryPath();
+          }
+        })
+        .catch(error => {
+          console.error(`Error processing posts from ${currentPath}:`, error);
+          currentPathIndex++;
+          tryPath();
+        });
+      }
+      
+      // Start trying paths
+      tryPath();
     }
-  }, { rootMargin: '100px' });
-  observer.observe(postsContainer);
+    
+    // Start loading posts immediately instead of using IntersectionObserver
+    loadPosts();
+    
+    // Alternatively, keep the original observer approach but with improved path handling
+    /*
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        loadPosts();
+        observer.disconnect();
+      }
+    }, { rootMargin: '100px' });
+    observer.observe(postsContainer);
+    */
+  }
 
   function renderPosts(posts) {
     const container = document.getElementById('posts-container');
+    
+    if (!container) {
+      console.error('Posts container not found when rendering posts');
+      return;
+    }
     
     if (posts.length === 0) {
       container.innerHTML = '<div class="error">No posts found.</div>';
@@ -284,8 +343,13 @@ window.addEventListener('load', function() {
         `;
       }
       
-      const imageHTML = post.image 
-        ? `<img src="post/${post.image}" alt="${post.title}" class="post-image" width="300" height="200">`
+      // Improve image handling with fallback and error handling
+      const imagePath = post.image 
+        ? (post.image.startsWith('http') ? post.image : `post/${post.image}`)
+        : null;
+      
+      const imageHTML = imagePath
+        ? `<img src="${imagePath}" alt="${post.title}" class="post-image" width="300" height="200" onerror="this.onerror=null;this.src='';this.parentElement.style.background='linear-gradient(135deg, var(--primary), var(--secondary))';">`
         : `<div class="post-image" style="background: linear-gradient(135deg, var(--primary), var(--secondary));"></div>`;
       
       postsHTML += `
@@ -307,6 +371,7 @@ window.addEventListener('load', function() {
     });
     
     container.innerHTML = postsHTML;
+    console.log('Posts rendered successfully');
   }
 
   // Handle Subscription Form

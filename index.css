@@ -1175,6 +1175,7 @@ body.dark-mode .mountain-background::before {
   color: var(--dark);
   padding: 0.6rem 1.2rem;
   border-radius: 20px;
+  font-family: 'Josefin Sans', sans-serif; /* Added font-family */
   font-weight: 600;
   cursor: pointer;
   transition: var(--transition);
